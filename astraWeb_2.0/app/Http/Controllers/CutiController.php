@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\cuti;
+use App\Models\jenis_cuti;
+use App\Models\karyawan;
 use Illuminate\Http\Request;
 
 class CutiController extends Controller
@@ -13,9 +15,8 @@ class CutiController extends Controller
     public function index()
     {
         //
-        return view('cuti.index', [
-            'cutis' => cuti::all()
-        ]);
+        $karyawans = karyawan::with('jenisCutis')->get(); // Mengambil semua karyawan dan jenis cuti terkait
+        return view('cuti.index', compact('karyawans'));
     }
 
     /**
@@ -24,7 +25,6 @@ class CutiController extends Controller
     public function create()
     {
         //
-        return view('cuti.create');
     }
 
     /**
@@ -33,17 +33,6 @@ class CutiController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'user_id' => 'required',
-            'jenis_cuti' => 'required',
-            'tanggal_mulai' => 'required',
-            'tanggal_selesai' => 'required',
-            'keterangan' => 'required',
-        ]);
-
-        cuti::create($request->all());
-        return redirect()->route('cuti.index')
-            ->with('success', 'cuti created successfully.');
     }
 
     /**
@@ -76,5 +65,30 @@ class CutiController extends Controller
     public function destroy(cuti $cuti)
     {
         //
+    }
+
+    public function verifikasiCuti($id)
+    {
+        $cuti = Cuti::findOrFail($id);
+
+        // Verifikasi cuti dan kurangi sisa cuti
+        $jenisCuti = jenis_cuti::where('karyawan_id', $cuti->karyawan_id)
+            ->where('jenis_cuti', $cuti->jenis_cuti_id)
+            ->first();
+
+        if ($jenisCuti && $jenisCuti->sisa_cuti >= $cuti->jumlah_hari) {
+            $jenisCuti->sisa_cuti -= $cuti->jumlah_hari;
+            $jenisCuti->save();
+
+            $cuti->status = 'diterima';
+            $cuti->save();
+
+            // Kirim notifikasi ke karyawan
+            // Anda bisa mengimplementasikan sistem notifikasi Anda di sini
+
+            return redirect()->back()->with('success', 'Cuti telah diterima.');
+        } else {
+            return redirect()->back()->with('error', 'Cuti tidak dapat diverifikasi.');
+        }
     }
 }

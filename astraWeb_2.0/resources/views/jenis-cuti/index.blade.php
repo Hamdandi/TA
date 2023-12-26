@@ -12,17 +12,8 @@
                 <thead>
                     <tr>
                         <th>NO</th>
-                        <th>JATAH CUTI TAHUNAN</th>
-                        <th>JATAH CUTI BESAR</th>
-                        <th>JATAH CUTI BERSALIN</th>
-                        <th>JATAH CUTI DILUAR PERUSAHAAN</th>
-                        <th>JATAH CUTI PERNIKAHAN</th>
-                        <th>JATAH CUTI KELAHIRAN</th>
-                        <th>JATAH CUTI KEMATIAN</th>
-                        <th>JATAH CUTI KHITANAN</th>
-                        <th>JATAH CUTI UJIAN KESERJANAAN</th>
-                        <th>JATAH CUTI KEPENTINGAN</th>
-                        <th>JATAH CUTI NASIONAL</th>
+                        <th>JENIS CUTI</th>
+                        <th>JATAH CUTI</th>
                         <th>AKSI</th>
                     </tr>
                 </thead>
@@ -30,20 +21,15 @@
                     @foreach ($jenis_cutis as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            {{-- <td>{{ $item->karyawan->nama }}</td> --}}
-                            <td>{{ $item->jatah_cuti_tahunan }}</td>
-                            <td>{{ $item->jatah_cuti_besar }}</td>
-                            <td>{{ $item->jatah_cuti_bersalin }}</td>
-                            <td>{{ $item->jatah_cuti_diluar_perusahaan }}</td>
-                            <td>{{ $item->jatah_cuti_pernikahan }}</td>
-                            <td>{{ $item->jatah_cuti_kelahiran }}</td>
-                            <td>{{ $item->jatah_cuti_kematian }}</td>
-                            <td>{{ $item->jatah_cuti_khitanan }}</td>
-                            <td>{{ $item->jatah_cuti_ujian_keserjanaan }}</td>
-                            <td>{{ $item->jatah_cuti_kepentingan }}</td>
-                            <td>{{ $item->jatah_cuti_nasional }}</td>
+                            <td>{{ $item->jenis_cuti }}</td>
+                            <td>{{ $item->jatah_cuti }}</td>
                             <td>
-                                <a href="register/edit/{{ $item->id }}" class="btn btn-primary">Edit</button>
+                                <a href="jenis-cuti/edit/{{ $item->id }}" class="btn btn-primary">Edit</a>
+                                <form action="jenis-cuti/delete/{{ $item->id }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

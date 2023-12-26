@@ -13,17 +13,13 @@ return new class extends Migration
     {
         Schema::create('jenis_cutis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('karyawan_id');
-            $table->foreign('karyawan_id')
-                ->references('id')
-                ->on('karyawans')
-                ->onDelete('cascade')
-                ->onUpdate('cascade'); // foreign key
             $table->string('jenis_cuti');
-            $table->integer('jumlah_hari');
+            $table->integer('jatah_cuti'); // This will be the number of days for the leave type
+            $table->softDeletes();
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

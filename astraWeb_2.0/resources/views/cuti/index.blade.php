@@ -11,35 +11,23 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>NO</th>
-                        <th>USERNAME</th>
-                        <th>NAME</th>
-                        <th>NIK</th>
-                        <th>POSISI</th>
-                        <th>NOMOR HP</th>
-                        <th>ALAMAT</th>
-                        <th>JENIS KELAMIN</th>
-                        <th>AKSI</th>
+                        <th>Nama Karyawan</th>
+                        <th>Jenis Cuti</th>
+                        <th>Jumlah Hari</th>
+                        <th>Sisa Cuti</th>
+                        <th>Aksi</th> <!-- Kolom untuk tombol verifikasi -->
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($cutis as $item)
-                        <tr>
-                            <td>{{ $key + 1 }}</td>
-                            <td>{{ $item->user->username }}</td>
-                            <td>{{ $item->nama }}</td>
-                            <td>{{ $item->nip }}</td>
-                            <td>{{ $item->posisi }}</td>
-                            <td>{{ $item->nomor_hp }}</td>
-                            <td>{{ $item->alamat }}</td>
-                            <td>{{ $item->jenis_kelamin }}</td>
-                            <td>
-                                <a href="register/edit/{{ $item->id }}" class="btn btn-primary">Edit</a>
-                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#read-karyawan-modal">
-                                    Lihat
-                            </td>
-                        </tr>
+                    @foreach ($karyawans as $karyawan)
+                        @foreach ($karyawan->jenisCutis as $jenisCuti)
+                            <tr>
+                                <td>{{ $karyawan->nama }}</td>
+                                <td>{{ $jenisCuti->jenis_cuti }}</td>
+                                <td>{{ $jenisCuti->jumlah_hari }}</td>
+                                <td>{{ $jenisCuti->sisa_cuti }}</td>
+                            </tr>
+                        @endforeach
                     @endforeach
                 </tbody>
             </table>

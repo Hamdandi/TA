@@ -9,21 +9,13 @@ class cuti extends Model
 {
     use HasFactory;
 
-    public function user()
+    public function jenisCutis()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(jenis_cuti::class, 'karyawan_id');
     }
 
-    public function keryawan()
+    public function karyawans()
     {
-        return $this->hasMany(karyawan::class);
+        return $this->hasMany(Karyawan::class);
     }
-
-    protected $fillable = [
-        'user_id',
-        'jenis_cuti',
-        'tanggal_mulai',
-        'tanggal_selesai',
-        'keterangan',
-    ];
 }

@@ -9,6 +9,11 @@ class karyawan extends Model
 {
     use HasFactory;
 
+    public function jenisCutis()
+    {
+        return $this->hasMany(jenis_cuti::class, 'karyawan_id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -42,11 +42,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/jenis-cuti', [JenisCutiController::class, 'index'])->name('jenis-cuti.index');
     Route::get('/jenis-cuti/create', [JenisCutiController::class, 'create'])->name('jenis-cuti.create');
     Route::post('/jenis-cuti', [JenisCutiController::class, 'store'])->name('jenis-cuti.store');
+    Route::get('/jenis-cuti/edit/{jenis_cuti}', [JenisCutiController::class, 'edit'])->name('jenis-cuti.edit');
+    Route::patch('/jenis-cuti/{jenis_cuti}', [JenisCutiController::class, 'update'])->name('jenis-cuti.update');
+    Route::delete('/jenis-cuti/delete/{jenis_cuti}', [JenisCutiController::class, 'destroy'])->name('jenis-cuti.destroy');
 
     // Cuti
     Route::get('/cuti', [CutiController::class, 'index'])->name('cuti.index');
     Route::get('/cuti/create', [CutiController::class, 'create'])->name('cuti.create');
     Route::post('/cuti', [CutiController::class, 'store'])->name('cuti.store');
+    Route::get('/cuti/edit/{id}', [CutiController::class, 'edit'])->name('cuti.edit');
+    Route::patch('/cuti/{id}', [CutiController::class, 'update'])->name('cuti.update');
+
+    // verifiasi cuti
+    Route::get('/cuti/verifikasi/{id}', [CutiController::class, 'verifikasiCuti'])->name('cuti.verifikasi');
 
     // Reward
     Route::get('/reward', [RewardController::class, 'index'])->name('reward.index');

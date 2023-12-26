@@ -29,20 +29,10 @@ return new class extends Migration
             $table->date('tanggal_lahir')->nullable();
             $table->string('nip')->nullable();
             $table->string('ttd')->nullable();
-            $table->integer('sisa_cuti_tahunan')->nullable()->default(0);
-            $table->integer('sisa_cuti_besar')->nullable()->default(0);
-            $table->integer('sisa_cuti_bersalin')->nullable()->default(0);
-            $table->integer('sisa_cuti_diluar_perusahaan')->nullable()->default(0);
-            $table->integer('sisa_cuti_pernikahan')->nullable()->default(0);
-            $table->integer('sisa_cuti_kelahiran')->nullable()->default(0);
-            $table->integer('sisa_cuti_kematian')->nullable()->default(0);
-            $table->integer('sisa_cuti_khitanan')->nullable()->default(0);
-            $table->integer('sisa_cuti_ujian_kesarjanaan')->nullable()->default(0);
-            $table->integer('sisa_cuti_kepentingan')->nullable()->default(0);
-            $table->integer('sisa_cuti_nasional')->nullable()->default(0);
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

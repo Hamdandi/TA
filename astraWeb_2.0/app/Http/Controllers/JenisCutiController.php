@@ -14,7 +14,7 @@ class JenisCutiController extends Controller
     {
         //
         return view('jenis-cuti.index', [
-            'jenis_cutis' => jenis_cuti::all()
+            'jenis_cutis' => jenis_cuti::all(),
         ]);
     }
 
@@ -24,7 +24,9 @@ class JenisCutiController extends Controller
     public function create()
     {
         //
-        return view('jenis_cuti.create');
+        return view('jenis-cuti.create', [
+            'jenis_cutis' => jenis_cuti::all(),
+        ]);
     }
 
     /**
@@ -33,6 +35,14 @@ class JenisCutiController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'jenis_cuti' => 'required',
+            'jatah_cuti' => 'required'
+        ]);
+
+        jenis_cuti::create($request->all());
+        return redirect()->route('jenis-cuti.index')
+            ->with('success', 'Jenis Cuti created successfully.');
     }
 
     /**
@@ -49,6 +59,9 @@ class JenisCutiController extends Controller
     public function edit(jenis_cuti $jenis_cuti)
     {
         //
+        return view('jenis-cuti.update', [
+            'jenis_cuti' => $jenis_cuti,
+        ]);
     }
 
     /**
@@ -57,6 +70,15 @@ class JenisCutiController extends Controller
     public function update(Request $request, jenis_cuti $jenis_cuti)
     {
         //
+        $validateData = $request->validate([
+            'jenis_cuti' => 'required',
+            'jatah_cuti' => 'required'
+        ]);
+
+        jenis_cuti::where('id', $jenis_cuti->id)
+            ->update($validateData);
+        return redirect()->route('jenis-cuti.index')
+            ->with('success', 'Jenis Cuti updated successfully');
     }
 
     /**
@@ -65,5 +87,8 @@ class JenisCutiController extends Controller
     public function destroy(jenis_cuti $jenis_cuti)
     {
         //
+        $jenis_cuti->delete();
+        return redirect()->route('jenis-cuti.index')
+            ->with('success', 'Jenis Cuti deleted successfully');
     }
 }
