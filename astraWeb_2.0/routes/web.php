@@ -50,8 +50,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/cuti', [CutiController::class, 'index'])->name('cuti.index');
     Route::get('/cuti/create', [CutiController::class, 'create'])->name('cuti.create');
     Route::post('/cuti', [CutiController::class, 'store'])->name('cuti.store');
-    Route::get('/cuti/edit/{id}', [CutiController::class, 'edit'])->name('cuti.edit');
-    Route::patch('/cuti/{id}', [CutiController::class, 'update'])->name('cuti.update');
+    Route::get('/cuti/edit/{cuti}', [CutiController::class, 'edit'])->name('cuti.edit');
+    Route::patch('/cuti/{cuti}', [CutiController::class, 'update'])->name('cuti.update');
 
     // verifiasi cuti
     Route::get('/cuti/verifikasi/{id}', [CutiController::class, 'verifikasiCuti'])->name('cuti.verifikasi');

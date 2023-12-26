@@ -9,13 +9,18 @@ class cuti extends Model
 {
     use HasFactory;
 
-    public function jenisCutis()
+    public function jenis_cuti()
     {
-        return $this->hasMany(jenis_cuti::class, 'karyawan_id');
+        return $this->belongsTo(jenis_cuti::class);
     }
 
-    public function karyawans()
+    public function karyawan()
     {
-        return $this->hasMany(Karyawan::class);
+        return $this->belongsTo(Karyawan::class, 'user_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

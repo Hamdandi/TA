@@ -25,5 +25,17 @@ class KaryawanSeeder extends Seeder
             'tanggal_lahir' => '2021-01-01',
             'nip' => 'admin',
         ]);
+
+        DB::table('karyawans')->insert([
+            'user_id' => '2',
+            'nama' => 'popo',
+            'posisi' => 'BOS',
+            'nomor_hp' => '123456789',
+            'alamat' => 'palangka raya',
+            'jenis_kelamin' => 'laki-laki',
+            'tempat_lahir' => 'palangka raya',
+            'tanggal_lahir' => '2021-01-01',
+            'nip' => 'adumin',
+        ]);
     }
 }

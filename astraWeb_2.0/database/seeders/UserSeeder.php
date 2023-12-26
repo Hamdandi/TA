@@ -22,5 +22,13 @@ class UserSeeder extends Seeder
             'role' => 'hrd',
             'is_active' => '1',
         ]);
+
+        DB::table('users')->insert([
+            'username' => 'adumin',
+            'email' => 'adumin@adumin.com',
+            'password' => Hash::make('adumin'),
+            'role' => 'hrd',
+            'is_active' => '1',
+        ]);
     }
 }
