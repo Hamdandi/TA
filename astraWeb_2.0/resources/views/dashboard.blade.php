@@ -1,17 +1,68 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('template.master')
+@section('title', 'Dashboard')
+@section('content')
+    <section class="content">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-center">
+                <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+                        <div class="info-box-content">
+                            <span class="info-box-text">Lamaran masuk</span>
+                            <span class="info-box-number">41,410</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
                 </div>
+                <!-- /.col -->
+
+                <!-- fix for small devices only -->
+                <div class="clearfix hidden-md-up"></div>
+
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Data Pengajuan Cuti</span>
+                            <span class="info-box-number">760</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Jumlah Karyawn</span>
+                            <span class="info-box-number">2,000</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
             </div>
+
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-bell"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Notifikasi Baru</span>
+                        <span class="info-box-number">45</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+
         </div>
-    </div>
-</x-app-layout>
+    </section>
+@endsection

@@ -28,11 +28,6 @@
                     <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai">
                 </div>
                 <div class="form-group">
-                    <label for="jumlah_hari">Jumlah cuti yang diambil</label>
-                    <input type="text" class="form-control" id="jumlah_hari" placeholder="jumlah cuti yang diambil"
-                        name="jumlah_hari">
-                </div>
-                <div class="form-group">
                     <label for="alasan">Alasan mengajukan cuti</label>
                     <input type="text" class="form-control" id="alasan" placeholder="alasan mengajukan cuti"
                         name="alasan">

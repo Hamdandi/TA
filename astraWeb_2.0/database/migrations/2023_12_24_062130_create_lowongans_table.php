@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('nama_lowongan')->nullable();
             $table->string('jenis_pekerjaan')->nullable();
-            $table->string('deskripsi_pekerjaan')->nullable();
-            $table->string('persyaratan')->nullable();
+            $table->text('deskripsi_pekerjaan')->nullable();
+            $table->text('persyaratan')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -44,43 +44,19 @@
                             <td>{{ $item->alasan }}</td>
                             <td>{{ $item->status }}</td>
                             <td>{{ $item->keterangan }}</td>
-                            <td>
+                            <td class="row">
                                 <button class="btn btn-warning btn-edit" data-id="{{ $item->id }}">Edit</button>
-                                <form action="{{ url('cuti/' . $item->id) }}" method="POST" class="d-inline">
+                                <form action="cuti/delete/{{ $item->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger"
-                                        onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">Delete</button>
+                                    <button class="btn btn-danger delete-button" type="button" data-toggle="modal"
+                                        data-target="#confirmationModalCuti" data-id="{{ $item->id }}">Delete</button>
                                 </form>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-        </div>
-
-
-
-        <div class="modal fade" id="read-karyawan-modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Default Modal</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>One fine body&hellip;</p>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
         </div>
 
 
@@ -125,13 +101,35 @@
                 </div>
             </div>
         </div>
-        <!-- /.card-body -->
+
+
+        <div class="modal fade" id="confirmationModalCuti" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Confirm Deletion</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this job listing?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
     <script>
         $(document).on('click', '.btn-edit', function() {
             var cutiId = $(this).data('id');
+
 
             // Buat AJAX request untuk mendapatkan data cuti berdasarkan cutiId
             $.get('{{ route('cuti.edit', '') }}/' + cutiId, function(data) {
@@ -145,6 +143,30 @@
                 // Tampilkan modal
                 $('#edit-cuti-modal').modal('show');
             });
+
+
+        });
+
+        $(document).ready(function() {
+            var deleteFormCuti;
+
+            $('.delete-button').on('click', function() {
+                deleteFormCuti = $(this).closest('form');
+            });
+
+            $('#confirmationModalCuti #confirmDelete').on('click', function() {
+                deleteFormCuti.submit();
+
+                // Menampilkan notifikasi SweetAlert
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Lowongan berhasil dihapus.',
+                    showConfirmButton: false,
+                    timer: 1500 // Durasi tampilan notifikasi, contoh 1.5 detik
+                });
+            });
+
+            // ... kode JavaScript untuk fitur lain ...
         });
     </script>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\lowongan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class LowonganController extends Controller
 {
@@ -13,6 +14,17 @@ class LowonganController extends Controller
     public function index()
     {
         //
+        return view('lowongan.index', [
+            'lowongans' => lowongan::all()
+        ]);
+    }
+
+    public function landing()
+    {
+        //
+        return view('lowongan.landing', [
+            'lowongans' => lowongan::all()
+        ]);
     }
 
     /**
@@ -21,6 +33,7 @@ class LowonganController extends Controller
     public function create()
     {
         //
+        return view('lowongan.create');
     }
 
     /**
@@ -29,6 +42,18 @@ class LowonganController extends Controller
     public function store(Request $request)
     {
         //
+        $validationData = $request->validate([
+            'nama_lowongan' => 'required',
+            'jenis_pekerjaan' => 'required',
+            'deskripsi_pekerjaan' => 'required',
+            'persyaratan' => 'required',
+        ]);
+
+        $validationData['short'] = Str::limit(strip_tags($request->deskripsi_pekerjaan), 100);
+
+        lowongan::create($validationData);
+        // dd($request->all());
+        return redirect('/lowongan')->with('success', 'Lowongan berhasil ditambahkan');
     }
 
     /**
@@ -45,6 +70,9 @@ class LowonganController extends Controller
     public function edit(lowongan $lowongan)
     {
         //
+        return view('lowongan.update', [
+            'lowongan' => $lowongan
+        ]);
     }
 
     /**
@@ -53,6 +81,19 @@ class LowonganController extends Controller
     public function update(Request $request, lowongan $lowongan)
     {
         //
+        $validationData = $request->validate([
+            'nama_lowongan' => 'required',
+            'jenis_pekerjaan' => 'required',
+            'deskripsi_pekerjaan' => 'required',
+            'persyaratan' => 'required',
+        ]);
+
+        $validationData['short'] = Str::limit(strip_tags($request->deskripsi_pekerjaan), 100);
+
+        lowongan::where('id', $lowongan->id)
+            ->update($validationData);
+
+        return redirect('/lowongan')->with('success', 'Lowongan berhasil diupdate');
     }
 
     /**
@@ -61,5 +102,7 @@ class LowonganController extends Controller
     public function destroy(lowongan $lowongan)
     {
         //
+        $lowongan->delete();
+        return redirect('/lowongan')->with('success', 'Lowongan berhasil dihapus');
     }
 }

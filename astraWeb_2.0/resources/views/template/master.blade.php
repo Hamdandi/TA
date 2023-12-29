@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="{{ asset('/plugins/bs-stepper/css/bs-stepper.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/plugins/dropzone/min/dropzone.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/plugins/toastr/toastr.min.css') }}">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{ asset('/plugins/summernote/summernote-bs4.min.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
@@ -334,13 +336,7 @@
 
             <!-- Main content -->
             <section class="content">
-
-                <!-- Default box -->
-                <div class="card">
-                    @yield('content')
-                </div>
-                <!-- /.card -->
-
+                @yield('content')
             </section>
             <!-- /.content -->
         </div>
@@ -387,12 +383,15 @@
     <script src="{{ asset('/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <script src="{{ asset('/plugins/select2/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- Summernote -->
+    <script src="{{ asset('/plugins/summernote/summernote-bs4.min.js') }}"></script>
     <!-- SweetAlert2 -->
     <script src="{{ asset('/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     <!-- Toastr -->
     <script src="{{ asset('/plugins/toastr/toastr.min.js') }}"></script>
     <script>
         $(function() {
+
             $("#example1").DataTable({
                 "responsive": true,
                 "lengthChange": false,
@@ -417,10 +416,16 @@
                 theme: 'bootstrap4'
             })
 
+            $(document).ready(function() {
+                $('#summernote').summernote();
+                $('#summernote2').summernote();
+            });
+
             //Timepicker
             $('#timepicker').datetimepicker({
                 format: 'LT'
             })
+
         });
     </script>
 </body>

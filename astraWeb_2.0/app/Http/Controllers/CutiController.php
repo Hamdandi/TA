@@ -130,6 +130,8 @@ class CutiController extends Controller
     public function destroy(cuti $cuti)
     {
         //
+        $cuti->delete();
+        return redirect('/cuti')->with('success', 'Cuti berhasil dihapus');
     }
 
     public function verifikasiCuti($id)

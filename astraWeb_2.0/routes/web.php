@@ -3,9 +3,12 @@
 use App\Http\Controllers\CutiController;
 use App\Http\Controllers\JenisCutiController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\LemburController;
+use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\PhkController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PunishmentController;
+use App\Http\Controllers\ReqController;
 use App\Http\Controllers\RewardController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +23,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('template.master');
-});
+// Route::get('/', function () {
+//     return view('lowongan.landing');
+// });
+
+Route::get('/', [LowonganController::class, 'landing'])->name('lowongan.landing');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -32,6 +37,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Lowongan
+    Route::get('/lowongan', [LowonganController::class, 'index'])->name('lowongan.index');
+    Route::get('/lowongan/create', [LowonganController::class, 'create'])->name('lowongan.create');
+    Route::post('/lowongan', [LowonganController::class, 'store'])->name('lowongan.store');
+    Route::get('/lowongan/edit/{lowongan}', [LowonganController::class, 'edit'])->name('lowongan.edit');
+    Route::patch('/lowongan/{lowongan}', [LowonganController::class, 'update'])->name('lowongan.update');
+    Route::delete('/lowongan/delete/{lowongan}', [LowonganController::class, 'destroy'])->name('lowongan.destroy');
 
     // Karyawan
     Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan.index');
@@ -52,9 +65,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/cuti', [CutiController::class, 'store'])->name('cuti.store');
     Route::get('/cuti/edit/{cuti}', [CutiController::class, 'edit'])->name('cuti.edit');
     Route::patch('/cuti/{cuti}', [CutiController::class, 'update'])->name('cuti.update');
+    Route::delete('/cuti/delete/{cuti}', [CutiController::class, 'destroy'])->name('cuti.destroy');
 
     // verifiasi cuti
     Route::get('/cuti/verifikasi/{id}', [CutiController::class, 'verifikasiCuti'])->name('cuti.verifikasi');
+
+    // Lembur
+    Route::get('/lembur', [LemburController::class, 'index'])->name('lembur.index');
+    Route::get('/lembur/create', [LemburController::class, 'create'])->name('lembur.create');
+    Route::post('/lembur', [LemburController::class, 'store'])->name('lembur.store');
 
     // Reward
     Route::get('/reward', [RewardController::class, 'index'])->name('reward.index');
@@ -70,6 +89,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/phk', [PhkController::class, 'index'])->name('phk.index');
     Route::get('/phk/create', [PhkController::class, 'create'])->name('phk.create');
     Route::post('/phk', [PhkController::class, 'store'])->name('phk.store');
+
+    // Req
+    Route::get('/req', [ReqController::class, 'index'])->name('req.index');
+    Route::get('/req/show/{req}', [ReqController::class, 'show'])->name('req.show');
+    Route::get('/req/create', [ReqController::class, 'create'])->name('req.create');
+    Route::post('/req', [ReqController::class, 'store'])->name('req.store');
+    Route::get('/req/edit/{req}', [ReqController::class, 'edit'])->name('req.edit');
+    Route::patch('/req/{req}', [ReqController::class, 'update'])->name('req.update');
+    Route::delete('/req/delete/{req}', [ReqController::class, 'destroy'])->name('req.destroy');
 });
 
 require __DIR__ . '/auth.php';

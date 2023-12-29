@@ -13,6 +13,9 @@ class LamaranController extends Controller
     public function index()
     {
         //
+        return view('lamaran.index', [
+            'lamarans' => lamaran::all()
+        ]);
     }
 
     /**

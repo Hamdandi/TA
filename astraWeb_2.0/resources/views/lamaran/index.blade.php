@@ -1,10 +1,10 @@
 @extends('template.master')
-@section('title', 'Lembur')
+@section('title', 'Lamaran')
 @section('content')
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h3 class="card-title">Manajemen Lembur</h3>
-            <a href="{{ url('lembur/create') }}" class="btn btn-primary">Add New</a>
+            <h3 class="card-title">List Lamaran Pekekerja</h3>
+            <a href="{{ url('lamaran/create') }}" class="btn btn-primary">Add New</a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -12,29 +12,22 @@
                 <thead>
                     <tr>
                         <th>NO</th>
-                        <th>TANGGAL</th>
-                        <th>NAME</th>
-                        <th>MULAI</th>
-                        <th>SELESAI</th>
-                        <th>JUMLAH</th>
-                        <th>HB/HL</th>
-                        <th>TOTAL</th>
-                        <th>KETERANGAN</th>
+                        <th>NAMA PELAMAR</th>
+                        <th>LOWONGAN</th>
+                        <th>STATUS</th>
+                        <th>NOMOR HP</th>
                         <th>ACTION</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($lembur as $item)
+                    @foreach ($lamarans as $item)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->tanggal }}</td>
-                            <td>{{ $item->karyawan->nama }}</td>
-                            <td>{{ $item->mulai_lembur }}</td>
-                            <td>{{ $item->selesai_lembur }}</td>
-                            <td>{{ $item->jumlah_jam }}</td>
+                            <td>{{ $loop->iterantion }}</td>
+                            <td>{{ $item->nama_lengkap }}</td>
+                            <td>{{ $item->lowongan->lowongan_id }}</td>
                             <td>{{ $item->status }}</td>
-                            <td>{{ $item->total_jam }}</td>
-                            <td>{{ $item->keterangan }}</td>
+                            <td>{{ $item->nomor_hp }}</td>
+                            <td>{{ $item->jenis_kelamin }}</td>
                             <td>
                                 <a href="register/edit/{{ $item->id }}" class="btn btn-primary">Edit</a>
                                 <button type="button" class="btn btn-success" data-toggle="modal"
