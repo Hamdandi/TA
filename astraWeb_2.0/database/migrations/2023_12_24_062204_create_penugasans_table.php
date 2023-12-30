@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('penugasans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('Karyawan_id');
+            $table->unsignedBigInteger('karyawan_id');
             $table->foreign('Karyawan_id') // foreign key
                 ->references('id')
                 ->on('users')

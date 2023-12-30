@@ -10,11 +10,12 @@ class penugasan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'Karyawan_id',
+        'karyawan_id',
         'nama_penugasan',
         'alasan',
         'tanggal_mulai',
         'tanggal_selesai',
+        'file',
     ];
 
     public function user()
@@ -24,6 +25,6 @@ class penugasan extends Model
 
     public function karyawan()
     {
-        return $this->belongsTo(karyawan::class, 'Karyawan_id');
+        return $this->belongsTo(karyawan::class, 'karyawan_id');
     }
 }

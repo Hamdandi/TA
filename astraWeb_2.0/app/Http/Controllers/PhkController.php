@@ -88,7 +88,7 @@ class PhkController extends Controller
         phk::where('id', $phk->id)
             ->update($validateData);
 
-        dd($validateData);
+        // dd($validateData);
         return redirect()->route('phk.index');
     }
 

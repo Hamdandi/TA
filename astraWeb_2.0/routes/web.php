@@ -75,6 +75,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/penugasan', [PenugasanController::class, 'index'])->name('penugasan.index');
     Route::get('/penugasan/create', [PenugasanController::class, 'create'])->name('penugasan.create');
     Route::post('/penugasan', [PenugasanController::class, 'store'])->name('penugasan.store');
+    Route::get('/penugasan/edit/{penugasan}', [PenugasanController::class, 'edit'])->name('penugasan.edit');
+    Route::patch('/penugasan/{penugasan}', [PenugasanController::class, 'update'])->name('penugasan.update');
 
     // Lembur
     Route::get('/lembur', [LemburController::class, 'index'])->name('lembur.index');

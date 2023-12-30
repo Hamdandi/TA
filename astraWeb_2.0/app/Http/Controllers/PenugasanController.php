@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use App\Models\karyawan;
 use App\Models\penugasan;
 use Illuminate\Http\Request;
@@ -36,15 +37,17 @@ class PenugasanController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'karyawan_id' => 'required',
+        $validateData = $request->validate([
+            'karyawan_id' => 'required|integer|exists:karyawans,id',
             'nama_penugasan' => 'required',
             'alasan' => 'required',
             'tanggal_mulai' => 'required',
             'tanggal_selesai' => 'required',
+            'file' => 'required|mimes:pdf|max:2048',
         ]);
 
-        penugasan::create($request->all());
+        $validateData['file'] = $request->file('file')->store('penugasan-pdf');
+        penugasan::create($validateData);
         return redirect()->route('penugasan.index')->with('success', 'Penugasan berhasil ditambahkan');
     }
 
@@ -62,6 +65,10 @@ class PenugasanController extends Controller
     public function edit(penugasan $penugasan)
     {
         //
+        return view('penugasan.update', [
+            'penugasan' => $penugasan,
+            'karyawans' => karyawan::all(),
+        ]);
     }
 
     /**
@@ -70,6 +77,21 @@ class PenugasanController extends Controller
     public function update(Request $request, penugasan $penugasan)
     {
         //
+        $validateData = $request->validate([
+            'karyawan_id' => 'required|integer|exists:karyawans,id',
+            'nama_penugasan' => 'required',
+            'alasan' => 'required',
+            'tanggal_mulai' => 'required',
+            'tanggal_selesai' => 'required',
+            'file' => 'required|mimes:pdf|max:2048',
+        ]);
+
+        if ($request->old_file) {
+            Storage::delete($request->old_file);
+        }
+        $validateData['file'] = $request->file('file')->store('penugasan-pdf');
+        penugasan::where('id', $penugasan->id)->update($validateData);
+        return redirect()->route('penugasan.index')->with('success', 'Penugasan berhasil diupdate');
     }
 
     /**

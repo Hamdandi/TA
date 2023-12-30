@@ -31,10 +31,10 @@
                             <td>{{ $item->nama_penugasan }}</td>
                             <td>{{ $item->tanggal_mulai }}</td>
                             <td>{{ $item->tanggal_selesai }}</td>
-                            <td>{{ $item->file }}</td>
+                            <td><a href="{{ asset('storage/' . $item->file) }}" target="_blank">Lihat</a></td>
                             <td>{{ $item->alasan }}</td>
                             <td>
-                                <a href="register/edit/{{ $item->id }}" class="btn btn-primary">Edit</button>
+                                <a href="penugasan/edit/{{ $item->id }}" class="btn btn-primary">Edit</button>
                             </td>
                         </tr>
                     @endforeach
