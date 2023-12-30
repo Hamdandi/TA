@@ -85,16 +85,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/reward', [RewardController::class, 'index'])->name('reward.index');
     Route::get('/reward/create', [RewardController::class, 'create'])->name('reward.create');
     Route::post('/reward', [RewardController::class, 'store'])->name('reward.store');
+    Route::get('/reward/edit/{reward}', [RewardController::class, 'edit'])->name('reward.edit');
+    Route::patch('/reward/{reward}', [RewardController::class, 'update'])->name('reward.update');
 
     // Punishment
     Route::get('/punishment', [PunishmentController::class, 'index'])->name('punishment.index');
     Route::get('/punishment/create', [PunishmentController::class, 'create'])->name('punishment.create');
     Route::post('/punishment', [PunishmentController::class, 'store'])->name('punishment.store');
+    Route::get('/punishment/edit/{punishment}', [PunishmentController::class, 'edit'])->name('punishment.edit');
+    Route::patch('/punishment/{punishment}', [PunishmentController::class, 'update'])->name('punishment.update');
 
     // PHK
     Route::get('/phk', [PhkController::class, 'index'])->name('phk.index');
     Route::get('/phk/create', [PhkController::class, 'create'])->name('phk.create');
     Route::post('/phk', [PhkController::class, 'store'])->name('phk.store');
+    Route::get('/phk/edit/{phk}', [PhkController::class, 'edit'])->name('phk.edit');
+    Route::patch('/phk/{phk}', [PhkController::class, 'update'])->name('phk.update');
 
     // Req
     Route::get('/req', [ReqController::class, 'index'])->name('req.index');

@@ -1,5 +1,5 @@
 @extends('template.master')
-@section('title', 'Create Punishment')
+@section('title', 'Update PHK')
 @section('content')
     <div class="card card-primary">
         <div class="card-header">
@@ -7,8 +7,9 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form method="POST" action="{{ route('phk.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('phk.update', ['phk' => $phk->id]) }}">
             @csrf
+            @method('PATCH')
             <!-- /.card-header -->
             <div class="card-body">
                 <div class="form-group">
@@ -16,13 +17,14 @@
                     <select class="form-control select2" name="karyawan_id" style="width: 100%;">
                         <option selected="selected">Pilih nama HRD</option>
                         @foreach ($karyawans as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                            <option value="{{ $item->id }}"
+                                {{ old('karyawan_id', $phk->karyawan_id) == $item->id ? 'selected' : '' }}>
+                                {{ $item->nama }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
-                    <textarea id="summernote" class="form-control" style="height: 300px" name="keterangan">
-                </textarea>
+                    <textarea id="summernote" class="form-control" style="height: 300px" name="keterangan">{{ old('keterangan') ?? $phk->keterangan }}</textarea>
                 </div>
                 <div class="form-group">
                     <div class="btn btn-default btn-file">
@@ -32,7 +34,6 @@
                     <p class="help-block">Max. 32MB</p>
                     <!-- Elemen untuk menampilkan nama file -->
                 </div>
-
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
@@ -53,5 +54,4 @@
             document.getElementById('fileName').textContent = fileName;
         });
     </script>
-
 @endsection

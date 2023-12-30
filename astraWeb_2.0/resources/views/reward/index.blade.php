@@ -26,7 +26,7 @@
                             <td>{{ $item->karyawan->posisi }}</td>
                             <td>{{ $item->keterangan }}</td>
                             <td>
-                                <a href="register/edit/{{ $item->id }}" class="btn btn-primary">Edit</button>
+                                <a href="reward/edit/{{ $item->id }}" class="btn btn-primary">Edit</button>
                             </td>
                         </tr>
                     @endforeach

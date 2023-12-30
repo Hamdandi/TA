@@ -36,12 +36,14 @@ class PhkController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'karyawan_id' => 'required',
+        $validateData = $request->validate([
+            'karyawan_id' => 'required|integer|exists:karyawans,id',
             'keterangan' => 'required',
+            'file' => 'required|mimes:pdf|max:3048',
         ]);
 
-        phk::create($request->all());
+        $validateData['file'] = $request->file('file')->store('phk-pdf');
+        phk::create($validateData);
         return redirect()->route('phk.index')
             ->with('success', 'phk created successfully.');
     }
@@ -60,6 +62,10 @@ class PhkController extends Controller
     public function edit(phk $phk)
     {
         //
+        return view('phk.update', [
+            'phk' => $phk,
+            'karyawans' => karyawan::all(),
+        ]);
     }
 
     /**
@@ -68,6 +74,18 @@ class PhkController extends Controller
     public function update(Request $request, phk $phk)
     {
         //
+        $validateData = $request->validate([
+            'karyawan_id' => 'required|integer|exists:karyawans,id',
+            'keterangan' => 'required',
+            // 'file' => 'required|mimes:pdf|max:3048',
+        ]);
+
+        // $validateData['file'] = $request->file('file')->store('phk-pdf');
+        phk::where('id', $phk->id)
+            ->update($validateData);
+
+        dd($validateData);
+        return redirect()->route('phk.index');
     }
 
     /**

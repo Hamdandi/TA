@@ -1,5 +1,5 @@
 @extends('template.master')
-@section('title', 'Create Punishment')
+@section('title', 'Update Reward')
 @section('content')
     <div class="card card-primary">
         <div class="card-header">
@@ -7,22 +7,25 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form method="POST" action="{{ route('punishment.store') }}">
+        <form method="POST" action="{{ route('reward.update', ['reward' => $reward->id]) }}">
             @csrf
+            @method('PATCH')
             <div class="card-body">
                 <div class="form-group">
                     <label>Nama Karyawan</label>
                     <select class="form-control select2" name="karyawan_id" style="width: 100%;">
-                        <option value="" selected="selected">Pilih nama karyawan</option>
+                        <option selected="selected">Pilih nama karyawan</option>
                         @foreach ($karyawans as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                            <option value="{{ $item->id }}"
+                                {{ old('karyawan_id', $reward->karyawan_id) == $item->id ? 'selected' : '' }}>
+                                {{ $item->nama }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="keterangan">Keterangan</label>
                     <input type="text" class="form-control" id="keterangan" placeholder="masukkan Jatah Cuti"
-                        name="keterangan">
+                        name="keterangan" value="{{ old('keterangan') ?? $reward->keterangan }}">
                 </div>
             </div>
             <!-- /.card-body -->

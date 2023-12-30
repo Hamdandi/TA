@@ -12,6 +12,7 @@ class phk extends Model
     protected $fillable = [
         'karyawan_id',
         'keterangan',
+        'file',
     ];
     public function user()
     {

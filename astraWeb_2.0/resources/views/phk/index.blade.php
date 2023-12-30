@@ -14,6 +14,7 @@
                         <th>NO</th>
                         <th>NAME</th>
                         <th>POSISI</th>
+                        <th>FILE</th>
                         <th>KETERANGAN</th>
                         <th>AKSI</th>
                     </tr>
@@ -24,9 +25,10 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->karyawan->nama }}</td>
                             <td>{{ $item->karyawan->posisi }}</td>
+                            <td><a href="{{ asset('storage/' . $item->file) }}" target="_blank">Lihst</a></td>
                             <td>{!! $item->keterangan !!}</td>
                             <td>
-                                <a href="register/edit/{{ $item->id }}" class="btn btn-primary">Edit</button>
+                                <a href="phk/edit/{{ $item->id }}" class="btn btn-primary">Edit</button>
                             </td>
                         </tr>
                     @endforeach

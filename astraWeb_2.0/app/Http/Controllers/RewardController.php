@@ -61,6 +61,10 @@ class RewardController extends Controller
     public function edit(reward $reward)
     {
         //
+        return view('reward.update', [
+            'reward' => $reward,
+            'karyawans' => karyawan::all(),
+        ]);
     }
 
     /**
@@ -69,6 +73,15 @@ class RewardController extends Controller
     public function update(Request $request, reward $reward)
     {
         //
+        $validationData = $request->validate([
+            'karyawan_id' => 'required',
+            'keterangan' => 'required',
+        ]);
+
+        reward::where('id', $reward->id)
+            ->update($validationData);
+
+        return redirect()->route('reward.index');
     }
 
     /**

@@ -60,6 +60,10 @@ class PunishmentController extends Controller
     public function edit(punishment $punishment)
     {
         //
+        return view('punishment.update', [
+            'punishment' => $punishment,
+            'karyawans' => karyawan::all(),
+        ]);
     }
 
     /**
@@ -68,6 +72,15 @@ class PunishmentController extends Controller
     public function update(Request $request, punishment $punishment)
     {
         //
+        $validateData = $request->validate([
+            'karyawan_id' => 'required',
+            'keterangan' => 'required',
+        ]);
+
+        punishment::where('id', $punishment->id)
+            ->update($validateData);
+
+        return redirect()->route('punishment.index');
     }
 
     /**
