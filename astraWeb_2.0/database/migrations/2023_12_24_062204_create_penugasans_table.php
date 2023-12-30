@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('alasan')->nullable();
             $table->date('tanggal_mulai')->nullable();
             $table->date('tanggal_selesai')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }

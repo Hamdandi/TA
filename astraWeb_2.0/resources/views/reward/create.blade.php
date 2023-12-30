@@ -8,25 +8,27 @@
         <!-- /.card-header -->
         <!-- form start -->
         <form method="POST" action="{{ route('reward.store') }}">
+            @csrf
             <div class="card-body">
                 <div class="form-group">
-                    <input class="form-control" placeholder="To:">
+                    <label>Nama Karyawan</label>
+                    <select class="form-control select2" name="karyawan_id" style="width: 100%;">
+                        <option selected="selected">Pilih nama karyawan</option>
+                        @foreach ($karyawans as $item)
+                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" placeholder="Subject:">
+                    <label for="keterangan">Keterangan</label>
+                    <input type="text" class="form-control" id="keterangan" placeholder="masukkan Jatah Cuti"
+                        name="keterangan">
                 </div>
-                <div class="form-group">
-                    <textarea id="summernote" class="form-control" style="height: 300px">
+            </div>
+            <!-- /.card-body -->
 
-                    </textarea>
-                </div>
-                <div class="form-group">
-                    <div class="btn btn-default btn-file">
-                        <i class="fas fa-paperclip"></i> Attachment
-                        <input type="file" name="attachment">
-                    </div>
-                    <p class="help-block">Max. 32MB</p>
-                </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
     </div>

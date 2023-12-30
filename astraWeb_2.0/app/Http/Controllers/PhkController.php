@@ -15,7 +15,7 @@ class PhkController extends Controller
     {
         //
         return view('phk.index', [
-            'phks' => phk::all(),
+            'phks' => phk::with('karyawan')->get(),
         ]);
     }
 

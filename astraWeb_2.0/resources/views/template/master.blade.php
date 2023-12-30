@@ -188,7 +188,7 @@
             <a href="../../index3.html" class="brand-link">
                 <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <span class="brand-text font-weight-light">Astra Isuzu Palembang</span>
             </a>
 
             <!-- Sidebar -->
@@ -222,86 +222,120 @@
                         data-accordion="false">
                         <!-- Master Data -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-database"></i>
+                            <a href="{{ url('/dashboard') }}" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    Master Data
-                                    <i class="right fas fa-angle-left"></i>
+                                    DashBoard
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/rekrutmen" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Rekrutmen</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/karyawan" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Karyawan</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/master-akun" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Master Akun</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-
-                        <!-- Kehadiran -->
+                        <p class="text-white nav-link">Master Data</p>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-check"></i>
+                            <a href="{{ url('/register') }}" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
                                 <p>
-                                    Kehadiran
-                                    <i class="right fas fa-angle-left"></i>
+                                    Users
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/rekap-absen" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Rekap Absen</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/cuti" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Cuti</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/lembur" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Lembur</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-
-                        <!-- Lain-lain -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-ellipsis-h"></i>
+                            <a href="{{ url('/karyawan') }}" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
                                 <p>
-                                    Lain-lain
-                                    <i class="right fas fa-angle-left"></i>
+                                    Karyawan
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <!-- Tambahkan submenu lain-lain di sini -->
-                                <!-- Contoh: -->
-                                <li class="nav-item">
-                                    <a href="/penugasan" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Penugasan</p>
-                                    </a>
-                                </li>
-                                <!-- Tambahkan submenu lain seperti Pelatihan, Reward, Punishment, PHK, Data Laporan -->
-                            </ul>
+                        </li>
+                        <p class="text-white nav-link">Rekrutmen</p>
+                        <li class="nav-item">
+                            <a href="{{ url('/lowongan') }}" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Lowongan
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/lamaran') }}" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Lamaran
+                                </p>
+                            </a>
+                        </li>
+                        <p class="text-white nav-link">Presensi</p>
+                        <li class="nav-item">
+                            <a href="{{ url('/rekap') }}" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Rekap Presensi
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/jenis-cuti') }}" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Jenis Cuti
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/cuti') }}" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Cuti
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/lembur') }}" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Lembur
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/penugasan') }}" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Penugasan
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/pelatihan') }}" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Pelatihan
+                                </p>
+                            </a>
+                        </li>
+                        <p class="text-white nav-link">Lain - lain</p>
+                        <li class="nav-item">
+                            <a href="{{ url('/reward') }}" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Reward
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/punishment') }}" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Punishment
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/phk') }}" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    PHK
+                                </p>
+                            </a>
                         </li>
                     </ul>
                 </nav>

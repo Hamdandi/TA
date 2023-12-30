@@ -20,6 +20,7 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade'); // foreign key
             $table->string('keterangan')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }

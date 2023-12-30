@@ -5,6 +5,7 @@ use App\Http\Controllers\JenisCutiController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\LemburController;
 use App\Http\Controllers\LowonganController;
+use App\Http\Controllers\PenugasanController;
 use App\Http\Controllers\PhkController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PunishmentController;
@@ -69,6 +70,11 @@ Route::middleware('auth')->group(function () {
 
     // verifiasi cuti
     Route::get('/cuti/verifikasi/{id}', [CutiController::class, 'verifikasiCuti'])->name('cuti.verifikasi');
+
+    // Pennugasan
+    Route::get('/penugasan', [PenugasanController::class, 'index'])->name('penugasan.index');
+    Route::get('/penugasan/create', [PenugasanController::class, 'create'])->name('penugasan.create');
+    Route::post('/penugasan', [PenugasanController::class, 'store'])->name('penugasan.store');
 
     // Lembur
     Route::get('/lembur', [LemburController::class, 'index'])->name('lembur.index');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\karyawan;
 use App\Models\penugasan;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,9 @@ class PenugasanController extends Controller
     public function index()
     {
         //
+        return view('penugasan.index', [
+            'penugasan' => penugasan::with('karyawan')->get(),
+        ]);
     }
 
     /**
@@ -21,6 +25,9 @@ class PenugasanController extends Controller
     public function create()
     {
         //
+        return view('penugasan.create', [
+            'karyawans' => karyawan::all(),
+        ]);
     }
 
     /**
@@ -29,6 +36,16 @@ class PenugasanController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'karyawan_id' => 'required',
+            'nama_penugasan' => 'required',
+            'alasan' => 'required',
+            'tanggal_mulai' => 'required',
+            'tanggal_selesai' => 'required',
+        ]);
+
+        penugasan::create($request->all());
+        return redirect()->route('penugasan.index')->with('success', 'Penugasan berhasil ditambahkan');
     }
 
     /**

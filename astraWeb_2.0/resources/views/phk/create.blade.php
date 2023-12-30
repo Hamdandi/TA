@@ -9,25 +9,38 @@
         <!-- form start -->
         <form method="POST" action="{{ route('phk.store') }}">
             @csrf
+            <!-- /.card-header -->
             <div class="card-body">
                 <div class="form-group">
-                    <label>Minimal</label>
+                    <label>Nama HRD</label>
                     <select class="form-control select2" name="karyawan_id" style="width: 100%;">
-                        {{-- <option selected="selected">Pilih Karyawan</option> --}}
+                        <option selected="selected">Pilih nama HRD</option>
                         @foreach ($karyawans as $item)
                             <option value="{{ $item->id }}">{{ $item->nama }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="keterangan">Keterangan</label>
-                    <input type="text" class="form-control" id="keterangan" placeholder="Enter email" name="keterangan">
+                    <textarea id="summernote" class="form-control" style="height: 300px" name="keterangan">
+                </textarea>
+                </div>
+                <div class="form-group">
+                    <div class="btn btn-default btn-file">
+                        <i class="fas fa-paperclip"></i> Attachment
+                        <input type="file" name="file">
+                    </div>
+                    <p class="help-block">Max. 32MB</p>
                 </div>
             </div>
             <!-- /.card-body -->
-
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="float-right">
+                    <button type="button" class="btn btn-default"><i class="fas fa-pencil-alt"></i>
+                        Draft</button>
+                    <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i>
+                        Send</button>
+                </div>
+                <button type="reset" class="btn btn-default"><i class="fas fa-times"></i> Discard</button>
             </div>
         </form>
     </div>

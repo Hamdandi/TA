@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($rewards as $key => $item)
+                    @foreach ($rewards as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->karyawan->nama }}</td>

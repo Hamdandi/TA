@@ -15,7 +15,7 @@ class PunishmentController extends Controller
     {
         //
         return view('punishment.index', [
-            'punishments' => punishment::all(),
+            'punishments' => punishment::with('karyawan')->get()
         ]);
     }
 

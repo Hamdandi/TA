@@ -15,7 +15,7 @@ class RewardController extends Controller
     {
         //
         return view('reward.index', [
-            'rewards' => reward::all(),
+            'rewards' => reward::with('karyawan')->get()
         ]);
     }
 
@@ -42,6 +42,7 @@ class RewardController extends Controller
         ]);
 
         reward::create($request->all());
+        // dd($request->all());
         return redirect()->route('reward.index')
             ->with('success', 'reward created successfully.');
     }
