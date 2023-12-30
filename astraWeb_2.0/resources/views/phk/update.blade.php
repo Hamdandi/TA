@@ -7,7 +7,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form method="POST" action="{{ route('phk.update', ['phk' => $phk->id]) }}">
+        <form method="POST" action="{{ route('phk.update', ['phk' => $phk->id]) }}" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <!-- /.card-header -->
@@ -30,6 +30,7 @@
                     <div class="btn btn-default btn-file">
                         <i class="fas fa-paperclip"><span id="fileName">Unggah File</span></i>
                         <input type="file" name="file" id="fileInput">
+                        <input type="hidden" name="old_file" value="{{ $phk->file }}">
                     </div>
                     <p class="help-block">Max. 32MB</p>
                     <!-- Elemen untuk menampilkan nama file -->

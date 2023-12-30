@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use App\Models\karyawan;
 use App\Models\phk;
 use Illuminate\Http\Request;
@@ -77,10 +78,13 @@ class PhkController extends Controller
         $validateData = $request->validate([
             'karyawan_id' => 'required|integer|exists:karyawans,id',
             'keterangan' => 'required',
-            // 'file' => 'required|mimes:pdf|max:3048',
+            'file' => 'required|mimes:pdf|max:3048',
         ]);
 
-        // $validateData['file'] = $request->file('file')->store('phk-pdf');
+        if ($request->old_file) {
+            Storage::delete($request->old_file);
+        }
+        $validateData['file'] = $request->file('file')->store('phk-pdf');
         phk::where('id', $phk->id)
             ->update($validateData);
 
