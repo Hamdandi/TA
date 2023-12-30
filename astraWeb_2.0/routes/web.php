@@ -5,6 +5,7 @@ use App\Http\Controllers\JenisCutiController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\LemburController;
 use App\Http\Controllers\LowonganController;
+use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\PenugasanController;
 use App\Http\Controllers\PhkController;
 use App\Http\Controllers\ProfileController;
@@ -77,6 +78,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/penugasan', [PenugasanController::class, 'store'])->name('penugasan.store');
     Route::get('/penugasan/edit/{penugasan}', [PenugasanController::class, 'edit'])->name('penugasan.edit');
     Route::patch('/penugasan/{penugasan}', [PenugasanController::class, 'update'])->name('penugasan.update');
+
+    // Pelatihan
+    Route::get('/pelatihan', [PelatihanController::class, 'index'])->name('pelatihan.index');
+    Route::get('/pelatihan/create', [PelatihanController::class, 'create'])->name('pelatihan.create');
+    Route::post('/pelatihan', [PelatihanController::class, 'store'])->name('pelatihan.store');
+    Route::get('/pelatihan/edit/{pelatihan}', [PelatihanController::class, 'edit'])->name('pelatihan.edit');
+    Route::patch('/pelatihan/{pelatihan}', [PelatihanController::class, 'update'])->name('pelatihan.update');
 
     // Lembur
     Route::get('/lembur', [LemburController::class, 'index'])->name('lembur.index');

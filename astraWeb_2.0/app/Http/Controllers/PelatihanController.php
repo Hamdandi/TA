@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\karyawan;
 use App\Models\pelatihan;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,9 @@ class PelatihanController extends Controller
     public function index()
     {
         //
+        return view('pelatihan.index', [
+            'pelatihan' => pelatihan::with('karyawan')->get(),
+        ]);
     }
 
     /**
@@ -21,6 +25,9 @@ class PelatihanController extends Controller
     public function create()
     {
         //
+        return view('pelatihan.create', [
+            'karyawans' => karyawan::all(),
+        ]);
     }
 
     /**
@@ -29,6 +36,14 @@ class PelatihanController extends Controller
     public function store(Request $request)
     {
         //
+        $validatedData = $request->validate([
+            'karyawan_id' => 'required',
+            'nama_pelatihan' => 'required',
+        ]);
+
+        pelatihan::create($validatedData);
+        return redirect()->route('pelatihan.index')
+            ->with('success', 'pelatihan created successfully.');
     }
 
     /**
@@ -45,6 +60,10 @@ class PelatihanController extends Controller
     public function edit(pelatihan $pelatihan)
     {
         //
+        return view('pelatihan.update', [
+            'pelatihan' => $pelatihan,
+            'karyawans' => karyawan::all(),
+        ]);
     }
 
     /**
@@ -53,6 +72,15 @@ class PelatihanController extends Controller
     public function update(Request $request, pelatihan $pelatihan)
     {
         //
+        $validatedData = $request->validate([
+            'karyawan_id' => 'required',
+            'nama_pelatihan' => 'required',
+        ]);
+
+        pelatihan::where('id', $pelatihan->id)
+            ->update($validatedData);
+
+        return redirect()->route('pelatihan.index');
     }
 
     /**
