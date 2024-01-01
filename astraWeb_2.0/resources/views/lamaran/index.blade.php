@@ -12,22 +12,45 @@
                 <thead>
                     <tr>
                         <th>NO</th>
+                        <th>ID LOWONGAN</th>
                         <th>NAMA PELAMAR</th>
-                        <th>LOWONGAN</th>
-                        <th>STATUS</th>
+                        <th>EMAIL</th>
                         <th>NOMOR HP</th>
+                        <th>ALAMAT</th>
+                        <th>JENIS KELAMIN</th>
+                        <th>NAMA SEKOLAH/KAMPUS</th>
+                        <th>PENDIDIKAN</th>
+                        <th>JURUSAN</th>
+                        <th>TEMPAT LAHIR</th>
+                        <th>TANGGAL LAHIR</th>
+                        <th>STATUS PERNIKAHAN</th>
+                        <th>AKUN MEDIA</th>
+                        <th>RESUME</th>
+                        <th>FOTO</th>
+                        <th>STATUS</th>
                         <th>ACTION</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($lamarans as $item)
                         <tr>
-                            <td>{{ $loop->iterantion }}</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->lowongan->nama_lowongan }}</td>
                             <td>{{ $item->nama_lengkap }}</td>
-                            <td>{{ $item->lowongan->lowongan_id }}</td>
-                            <td>{{ $item->status }}</td>
+                            <td>{{ $item->email }}</td>
                             <td>{{ $item->nomor_hp }}</td>
+                            <td>{{ $item->alamat }}</td>
                             <td>{{ $item->jenis_kelamin }}</td>
+                            <td>{{ $item->nama_sekolah }}</td>
+                            <td>{{ $item->pendidikan }}</td>
+                            <td>{{ $item->jurusan }}</td>
+                            <td>{{ $item->tempat_lahir }}</td>
+                            <td>{{ $item->tanggal_lahir }}</td>
+                            <td>{{ $item->status_pernikahan }}</td>
+                            <td>{{ $item->akun_media }}</td>
+                            <td>{{ $item->resume }}</td>
+                            <td>{{ $item->foto }}</td>
+                            <td>{{ $item->statu }}</td>
                             <td>
                                 <a href="register/edit/{{ $item->id }}" class="btn btn-primary">Edit</a>
                                 <button type="button" class="btn btn-success" data-toggle="modal"

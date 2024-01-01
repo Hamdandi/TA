@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\cuti;
+use App\Models\jenis_cuti;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,10 +18,17 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        $cuti = Cuti::where('user_id', Auth::user()->id)->with('jenis_cuti')->latest()->get();  // Retrieve the latest cuti(s)
+
+        return view('profile.index', [
             'user' => $request->user(),
+            'cuti' => $cuti,
+            'jenis_cuti' => jenis_cuti::all(),
         ]);
     }
+
+
+
 
     /**
      * Update the user's profile information.

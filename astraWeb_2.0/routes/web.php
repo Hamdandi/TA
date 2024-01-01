@@ -3,6 +3,7 @@
 use App\Http\Controllers\CutiController;
 use App\Http\Controllers\JenisCutiController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\LamaranController;
 use App\Http\Controllers\LemburController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\PelatihanController;
@@ -47,6 +48,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/lowongan/edit/{lowongan}', [LowonganController::class, 'edit'])->name('lowongan.edit');
     Route::patch('/lowongan/{lowongan}', [LowonganController::class, 'update'])->name('lowongan.update');
     Route::delete('/lowongan/delete/{lowongan}', [LowonganController::class, 'destroy'])->name('lowongan.destroy');
+
+    // Lamaran
+    Route::get('/lamaran', [LamaranController::class, 'index'])->name('lamaran.index');
 
     // Karyawan
     Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan.index');

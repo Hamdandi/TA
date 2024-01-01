@@ -45,4 +45,5 @@ class karyawan extends Model
         'tanggal_lahir',
         'nip',
     ];
+    protected $dates = ['tanggal_lahir'];
 }

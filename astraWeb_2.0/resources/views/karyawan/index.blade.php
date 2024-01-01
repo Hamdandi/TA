@@ -34,40 +34,18 @@
                             <td>{{ $item->alamat }}</td>
                             <td>{{ $item->jenis_kelamin }}</td>
                             <td>
-                                <a href="register/edit/{{ $item->id }}" class="btn btn-primary">Edit</a>
-                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#read-karyawan-modal">
-                                    Lihat
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#karyawanModal-{{ $item->id }}">
+                                    Lihat Detail
+                                </button>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-
-
-
-        <div class="modal fade" id="read-karyawan-modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Default Modal</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>One fine body&hellip;</p>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- /.card-body -->
+        <!-- Modal for each karyawan -->
     </div>
+
+
 @endsection

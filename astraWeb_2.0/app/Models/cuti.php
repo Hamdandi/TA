@@ -11,7 +11,7 @@ class cuti extends Model
 
     public function jenis_cuti()
     {
-        return $this->belongsTo(jenis_cuti::class);
+        return $this->belongsTo(jenis_cuti::class, 'jenis_cuti_id');
     }
 
     public function karyawan()

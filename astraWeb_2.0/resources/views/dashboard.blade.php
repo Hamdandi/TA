@@ -50,19 +50,39 @@
                 <!-- /.col -->
             </div>
 
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-bell"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-text">Notifikasi Baru</span>
-                        <span class="info-box-number">45</span>
+            <!-- Vision Card -->
+            <div class="col-12">
+                <div class="card mb-3">
+                    <div class="card-header bg-info">
+                        <h3 class="card-title">VISI</h3>
                     </div>
-                    <!-- /.info-box-content -->
+                    <div class="card-body">
+                        <p class="card-text">Menjadi perusahaan konstruksi dan desain bangunan yang terkemuka, diakui secara
+                            global, yang mewujudkan visi klien kami menjadi realitas melalui inovasi, keunggulan teknis, dan
+                            keberlanjutan.</p>
+                    </div>
                 </div>
-                <!-- /.info-box -->
             </div>
 
+            <!-- Mission Card -->
+            <div class="col-12">
+                <div class="card mb-3">
+                    <div class="card-header bg-info">
+                        <h3 class="card-title">MISI</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li>Kami berkomitmen untuk memberikan kualitas terbaik dalam setiap proyek yang kami kerjakan.
+                                Kami akan terus berusaha untuk mencapai keunggulan dalam desain dan konstruksi bangunan.
+                            </li>
+                            <li>Keputusan pelanggan adalah prioritas utama kami. Kami akan mendengarkan dan memahami
+                                kebutuhan klien kami dengan cermat, serta berupaya melebihi harapan mereka dalam setiap
+                                proyek.</li>
+                            <!-- ... other mission points ... -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 @endsection

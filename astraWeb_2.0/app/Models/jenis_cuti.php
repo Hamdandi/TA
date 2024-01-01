@@ -24,4 +24,14 @@ class jenis_cuti extends Model
     {
         return $this->hasMany(Cuti::class);
     }
+
+    public function cuti()
+    {
+        return $this->belongsTo(Cuti::class, 'jenis_cuti_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

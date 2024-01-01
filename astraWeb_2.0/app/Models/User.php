@@ -47,4 +47,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(Karyawan::class);
     }
+
+    public function cuti()
+    {
+        return $this->hasMany(Cuti::class);
+    }
+
+    public function jenis_cuti()
+    {
+        return $this->hasMany(jenis_cuti::class);
+    }
 }
