@@ -19,7 +19,7 @@ return new class extends Migration
                 ->on('lowongans')
                 ->onDelete('cascade')
                 ->onUpdate('cascade'); // foreign key
-            $table->enum('status', ['diterima', 'ditolak', 'menunggu'])->nullable();
+            $table->enum('status', ['diterima', 'ditolak', 'menunggu', 'interview', 'psikotes'])->nullable()->default('menunggu');
             $table->string('nama_lengkap')->nullable();
             $table->string('nomor_hp')->nullable();
             $table->string('alamat')->nullable();

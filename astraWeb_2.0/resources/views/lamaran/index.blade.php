@@ -1,6 +1,11 @@
 @extends('template.master')
 @section('title', 'Lamaran')
 @section('content')
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h3 class="card-title">List Lamaran Pekekerja</h3>
@@ -50,42 +55,84 @@
                             <td>{{ $item->akun_media }}</td>
                             <td>{{ $item->resume }}</td>
                             <td>{{ $item->foto }}</td>
-                            <td>{{ $item->statu }}</td>
+                            <td>{{ $item->status }}</td>
                             <td>
-                                <a href="register/edit/{{ $item->id }}" class="btn btn-primary">Edit</a>
                                 <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#read-karyawan-modal">
-                                    Lihat
+                                    data-target="#edit-lamaran-modal" data-id='{{ $item->id }}'>
+                                    Edit
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+    </div>
 
+    <div class="modal fade" id="edit-lamaran-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="POST" action="{{ route('lamaran.update', ['lamaran' => $item->id]) }}"
+                    id="edit-lamaran-form">
+                    @csrf
+                    @method('PATCH')
 
-
-        <div class="modal fade" id="read-karyawan-modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Default Modal</h4>
+                        <h4 class="modal-title">Edit Status Lamaran</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+
                     <div class="modal-body">
-                        <p>One fine body&hellip;</p>
+                        {{-- Dropdown untuk status --}}
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select class="form-control" id="status" name="status">
+                                <option value="menunggu">Menunggu</option>
+                                <option value="diterima">Diterima</option>
+                                <option value="ditolak">Ditolak</option>
+                                <option value="interview">Interview</option>
+                                <option value="psikotes">Psikotes</option>
+                            </select>
+                        </div>
                     </div>
+
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
-                </div>
-                <!-- /.modal-content -->
+                </form>
             </div>
-            <!-- /.modal-dialog -->
         </div>
-        <!-- /.card-body -->
     </div>
+
+    <script>
+        $(document).on('click', '.btn-edit', function() {
+            var lamaranId = $(this).data('id');
+
+            // Buat AJAX request untuk mendapatkan data lamaran berdasarkan lamaranId
+            $.get('{{ url('/lamaran') }}/' + lamaranId + '/edit', function(data) {
+                // Isi modal dengan data yang diterima
+                $('#edit-lamaran-modal #status').val(data.status);
+                // ...isi dengan data lain jika diperlukan
+
+                // Update action form modal
+                $('#edit-lamaran-modal form').attr('action', '{{ route('lamaran.update', '') }}/' +
+                    lamaranId);
+
+                // Tampilkan modal
+                $('#edit-lamaran-modal').modal('show');
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $(".alert-success").fadeOut('slow');
+            }, 3000); // Waktu dalam milidetik, 3000 milidetik = 3 detik
+        });
+    </script>
+
+
 @endsection

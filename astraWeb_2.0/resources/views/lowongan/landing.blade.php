@@ -53,12 +53,19 @@
                 </div><!-- /.container-fluid -->
             </section>
 
+
             <!-- Main content -->
             <section class="content">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <div class="container">
                     <div class="col-12 position-relative" id="accordion">
                         @foreach ($lowongans as $index => $item)
-                            <div class="card card-primary card-outline card-custom">
+                            <div class="card card-primary card-outline card-custom"
+                                data-lowongan-id="{{ $item->id }}">
                                 <a class="d-block w-100" data-toggle="collapse" href="#collapse{{ $index }}">
                                     <div class="card-header">
                                         <h4 class="card-title w-100">
@@ -116,7 +123,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="POST" action="{{ url('/path-to-save-lamaran') }}">
+                <form method="POST" action="{{ route('lamaran.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <!-- Form fields based on lamarans schema -->
@@ -138,7 +145,10 @@
                         </div>
                         <div class="form-group">
                             <label for="jenis_kelamin">Jenis Kelamin</label>
-                            <input type="text" class="form-control" id="jenis_kelamin" name="jenis_kelamin">
+                            <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
+                                <option value="laki-laki">Laki-laki</option>
+                                <option value="perempuan">Perempuan</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="nama_sekolah">Nama Sekolah/Universitas</label>
@@ -163,8 +173,9 @@
                         <div class="form-group">
                             <label for="status_pernikahan">Status Pernikahan</label>
                             <select class="form-control" id="status_pernikahan" name="status_pernikahan">
-                                <option value="laki-laki">Laki-laki</option>
-                                <option value="perempuan">Perempuan</option>
+                                <option value="menikah">Menikah</option>
+                                <option value="belum menikah">Belum Menikah</option>
+                                <option value="janda/duda">Janda/Duda</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -174,20 +185,21 @@
                         <div class="row">
                             <div class="form-gropu">
                                 <div class="btn btn-default btn-file">
-                                    <i class="fas fa-paperclip"></i> Resume
+                                    <i class="fas fa-paperclip resumeFileName"></i> Resume
                                     <input type="file" id="resume" name="resume">
                                 </div>
                                 <p id="resumeFileName"></p> <!-- Label to display selected file name -->
                             </div>
                             <div class="form-group">
                                 <div class="btn btn-default btn-file">
-                                    <i class="fas fa-paperclip"></i> Photo
+                                    <i class="fas fa-paperclip photoFileName"></i> Photo
                                     <input type="file" id="photo" name="foto">
                                 </div>
                                 <p id="photoFileName"></p> <!-- Label to display selected file name -->
                             </div>
                         </div>
                         <p class="help-block">Max. 32MB</p>
+                        <input type="hidden" id="lowongan_id" name="lowongan_id" value="">
 
 
                         <!-- Add more fields as per your schema -->
@@ -201,6 +213,7 @@
         </div>
     </div>
 
+
     <!-- ./wrapper -->
 
     <!-- jQuery -->
@@ -209,6 +222,18 @@
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../../dist/js/adminlte.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var applyButtons = document.querySelectorAll('.apply-button');
+            applyButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var lowonganId = this.closest('.card').getAttribute('data-lowongan-id');
+                    document.getElementById('lowongan_id').value = lowonganId;
+                });
+            });
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -222,7 +247,14 @@
         });
     </script>
 
-    <!-- AdminLTE for demo purposes -->
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $(".alert-success").fadeOut('slow');
+            }, 10000); // Waktu dalam milidetik, 3000 milidetik = 3 detik
+        });
+    </script>
+
 </body>
 
 </html>

@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [LowonganController::class, 'landing'])->name('lowongan.landing');
+Route::post('/lamaran', [LamaranController::class, 'store'])->name('lamaran.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -38,6 +39,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile/chance-password/{profile}', [ProfileController::class, 'chancepassword'])->name('profile.chancepassword');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
@@ -51,6 +53,8 @@ Route::middleware('auth')->group(function () {
 
     // Lamaran
     Route::get('/lamaran', [LamaranController::class, 'index'])->name('lamaran.index');
+    Route::get('/lamaran/edit/{lamaran}', [LamaranController::class, 'edit'])->name('lamaran.edit');
+    Route::patch('/lamaran/{lamaran}', [LamaranController::class, 'update'])->name('lamaran.update');
 
     // Karyawan
     Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan.index');

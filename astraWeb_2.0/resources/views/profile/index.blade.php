@@ -49,7 +49,7 @@
 
                         </ul>
 
-                        <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                        <a href="#" class="btn btn-primary btn-block"><b>Chance Password</b></a>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -121,12 +121,6 @@
                                             HandPhone/Whatsapp</label>
                                         <div class="col-sm-10">
                                             <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputName2" class="col-sm-2 col-form-label">Password</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputName2" placeholder="Name">
                                         </div>
                                     </div>
                                     <div class="form-group row">

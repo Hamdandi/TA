@@ -28,6 +28,12 @@ class ProfileController extends Controller
     }
 
 
+    public function chancepassword(Request $request): View
+    {
+        return view('profile.password', [
+            'user' => $request->user(),
+        ]);
+    }
 
 
     /**
