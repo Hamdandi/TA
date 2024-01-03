@@ -48,7 +48,8 @@ class PenugasanController extends Controller
 
         $validateData['file'] = $request->file('file')->store('penugasan-pdf');
         penugasan::create($validateData);
-        return redirect()->route('penugasan.index')->with('success', 'Penugasan berhasil ditambahkan');
+        session()->flash('success', 'Penugasan berhasil ditambahkan');
+        return redirect()->route('penugasan.index');
     }
 
     /**
@@ -91,7 +92,8 @@ class PenugasanController extends Controller
         }
         $validateData['file'] = $request->file('file')->store('penugasan-pdf');
         penugasan::where('id', $penugasan->id)->update($validateData);
-        return redirect()->route('penugasan.index')->with('success', 'Penugasan berhasil diupdate');
+        session()->flash('success', 'Penugasan berhasil diupdate');
+        return redirect()->route('penugasan.index');
     }
 
     /**
