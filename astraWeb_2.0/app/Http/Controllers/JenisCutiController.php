@@ -41,8 +41,8 @@ class JenisCutiController extends Controller
         ]);
 
         jenis_cuti::create($request->all());
-        return redirect()->route('jenis-cuti.index')
-            ->with('success', 'Jenis Cuti created successfully.');
+        session()->flash('success', 'Jenis Cuti berhasil ditambahkan');
+        return redirect('/jenis-cuti');
     }
 
     /**
@@ -77,8 +77,8 @@ class JenisCutiController extends Controller
 
         jenis_cuti::where('id', $jenis_cuti->id)
             ->update($validateData);
-        return redirect()->route('jenis-cuti.index')
-            ->with('success', 'Jenis Cuti updated successfully');
+        session()->flash('success', 'Jenis Cuti berhasil diupdate');
+        return redirect('/jenis-cuti');
     }
 
     /**

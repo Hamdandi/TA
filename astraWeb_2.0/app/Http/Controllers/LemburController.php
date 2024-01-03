@@ -83,14 +83,43 @@ class LemburController extends Controller
     public function edit(lembur $lembur)
     {
         //
+        return view('lembur.update', [
+            'lembur' => $lembur,
+            'karyawan' => karyawan::all(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, lembur $lembur)
+    public function update(Request $request, Lembur $lembur)
     {
-        //
+        $this->validate($request, [
+            'tanggal' => 'required|date',
+            'keterangan' => 'nullable|string',
+            'mulai_lembur' => 'required|date_format:H:i',
+            'selesai_lembur' => 'required|date_format:H:i|after:mulai_lembur',
+            'status' => 'required|in:hari_biasa,hari_libur,hari_libur_besar',
+        ]);
+
+        $mulaiLembur = Carbon::createFromFormat('H:i', $request->mulai_lembur);
+        $selesaiLembur = Carbon::createFromFormat('H:i', $request->selesai_lembur);
+
+        // Perhitungan jumlah jam lembur
+        $jumlahJam = $selesaiLembur->diffInHours($mulaiLembur);
+
+        $lembur->tanggal = $request->tanggal;
+        $lembur->keterangan = $request->keterangan;
+        $lembur->mulai_lembur = $mulaiLembur;
+        $lembur->selesai_lembur = $selesaiLembur;
+        $lembur->jumlah_jam = $jumlahJam;
+        $lembur->status = $request->status;
+
+        // Save the updated lembur record
+        $lembur->save();
+
+        session()->flash('success', 'Data lembur berhasil diupdate.');
+        return redirect()->route('lembur.index');
     }
 
     /**

@@ -98,6 +98,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/lembur', [LemburController::class, 'index'])->name('lembur.index');
     Route::get('/lembur/create', [LemburController::class, 'create'])->name('lembur.create');
     Route::post('/lembur', [LemburController::class, 'store'])->name('lembur.store');
+    Route::get('/lembur/edit/{lembur}', [LemburController::class, 'edit'])->name('lembur.edit');
+    Route::patch('/lembur/{lembur}', [LemburController::class, 'update'])->name('lembur.update');
 
     // Reward
     Route::get('/reward', [RewardController::class, 'index'])->name('reward.index');

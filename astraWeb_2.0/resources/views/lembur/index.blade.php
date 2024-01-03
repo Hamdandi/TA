@@ -8,6 +8,17 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
@@ -36,7 +47,7 @@
                             <td>{{ $item->total_jam }}</td>
                             <td>{{ $item->keterangan }}</td>
                             <td>
-                                <a href="register/edit/{{ $item->id }}" class="btn btn-primary">Edit</a>
+                                <a href="lembur/edit/{{ $item->id }}" class="btn btn-primary">Edit</a>
                                 <button type="button" class="btn btn-success" data-toggle="modal"
                                     data-target="#read-karyawan-modal">
                                     Lihat
