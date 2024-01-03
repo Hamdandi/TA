@@ -83,4 +83,12 @@
         </div>
         <!-- /.card-body -->
     </div>
+
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $(".alert-success").fadeOut('slow');
+            }, 3000); // Waktu dalam milidetik, 3000 milidetik = 3 detik
+        });
+    </script>
 @endsection

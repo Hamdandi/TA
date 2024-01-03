@@ -42,8 +42,8 @@ class PelatihanController extends Controller
         ]);
 
         pelatihan::create($validatedData);
-        return redirect()->route('pelatihan.index')
-            ->with('success', 'pelatihan created successfully.');
+        session()->flash('success', 'Pelatihan berhasil ditambahkan');
+        return redirect()->route('pelatihan.index');
     }
 
     /**
@@ -80,6 +80,7 @@ class PelatihanController extends Controller
         pelatihan::where('id', $pelatihan->id)
             ->update($validatedData);
 
+        session()->flash('success', 'Pelatihan berhasil diupdate');
         return redirect()->route('pelatihan.index');
     }
 

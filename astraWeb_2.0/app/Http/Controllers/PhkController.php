@@ -45,8 +45,9 @@ class PhkController extends Controller
 
         $validateData['file'] = $request->file('file')->store('phk-pdf');
         phk::create($validateData);
-        return redirect()->route('phk.index')
-            ->with('success', 'phk created successfully.');
+
+        session()->flash('success', 'PHK berhasil ditambahkan');
+        return redirect()->route('phk.index');
     }
 
     /**
@@ -89,6 +90,7 @@ class PhkController extends Controller
             ->update($validateData);
 
         // dd($validateData);
+        session()->flash('success', 'PHK berhasil diupdate');
         return redirect()->route('phk.index');
     }
 

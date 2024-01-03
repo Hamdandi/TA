@@ -43,8 +43,8 @@ class RewardController extends Controller
 
         reward::create($request->all());
         // dd($request->all());
-        return redirect()->route('reward.index')
-            ->with('success', 'reward created successfully.');
+        session()->flash('success', 'Reward berhasil ditambahkan');
+        return redirect()->route('reward.index');
     }
 
     /**
@@ -81,6 +81,7 @@ class RewardController extends Controller
         reward::where('id', $reward->id)
             ->update($validationData);
 
+        session()->flash('success', 'Reward berhasil diupdate');
         return redirect()->route('reward.index');
     }
 

@@ -42,8 +42,8 @@ class PunishmentController extends Controller
         ]);
 
         punishment::create($request->all());
-        return redirect()->route('punishment.index')
-            ->with('success', 'punishment created successfully.');
+        session()->flash('success', 'Punishment berhasil ditambahkan');
+        return redirect()->route('punishment.index');
     }
 
     /**
@@ -80,6 +80,7 @@ class PunishmentController extends Controller
         punishment::where('id', $punishment->id)
             ->update($validateData);
 
+        session()->flash('success', 'Punishment berhasil diupdate');
         return redirect()->route('punishment.index');
     }
 
