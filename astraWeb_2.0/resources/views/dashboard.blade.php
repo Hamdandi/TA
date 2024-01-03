@@ -50,36 +50,64 @@
                 <!-- /.col -->
             </div>
 
-            <!-- Vision Card -->
-            <div class="col-12">
-                <div class="card mb-3">
-                    <div class="card-header bg-info">
-                        <h3 class="card-title">VISI</h3>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Menjadi perusahaan konstruksi dan desain bangunan yang terkemuka, diakui secara
-                            global, yang mewujudkan visi klien kami menjadi realitas melalui inovasi, keunggulan teknis, dan
-                            keberlanjutan.</p>
+            <div class="row">
+                <!-- Jenis Cuti Section -->
+                <div class="col-md-6">
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <ul class="list-group list-group-unbordered mb-3">
+                                @if ($jenis_cuti->count() > 0)
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <b>Jenis Cuti</b>
+                                        <b>Sisa Cuti</b>
+                                    </li>
+
+                                    @foreach ($jenis_cuti as $jenis)
+                                        <li class="list-group-item d-flex justify-content-between">
+                                            <span>{{ $jenis->jenis_cuti }}</span>
+                                            <span>
+                                                @php
+                                                    $cutiSesuai = $cuti->where('jenis_cuti_id', $jenis->id)->first();
+                                                    $sisaCuti = $cutiSesuai ? $cutiSesuai->sisa_cuti : $jenis->jatah_cuti;
+                                                    echo $sisaCuti;
+                                                @endphp
+                                            </span>
+                                        </li>
+                                    @endforeach
+                                @else
+                                    <p>Tidak ada jenis cuti tersedia.</p>
+                                @endif
+                            </ul>
+                            <a href="#" class="btn btn-primary btn-block"><b>Change Password</b></a>
+                        </div>
+                        <!-- /.card-body -->
                     </div>
                 </div>
-            </div>
 
-            <!-- Mission Card -->
-            <div class="col-12">
-                <div class="card mb-3">
-                    <div class="card-header bg-info">
-                        <h3 class="card-title">MISI</h3>
+                <!-- Visi Misi Section -->
+                <div class="col-md-6">
+                    <!-- Vision Card -->
+                    <div class="card mb-3">
+                        <div class="card-header bg-info">
+                            <h3 class="card-title">VISI</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Your vision text here...</p>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <ul class="list-unstyled">
-                            <li>Kami berkomitmen untuk memberikan kualitas terbaik dalam setiap proyek yang kami kerjakan.
-                                Kami akan terus berusaha untuk mencapai keunggulan dalam desain dan konstruksi bangunan.
-                            </li>
-                            <li>Keputusan pelanggan adalah prioritas utama kami. Kami akan mendengarkan dan memahami
-                                kebutuhan klien kami dengan cermat, serta berupaya melebihi harapan mereka dalam setiap
-                                proyek.</li>
-                            <!-- ... other mission points ... -->
-                        </ul>
+
+                    <!-- Mission Card -->
+                    <div class="card mb-3">
+                        <div class="card-header bg-info">
+                            <h3 class="card-title">MISI</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li>Your mission point 1...</li>
+                                <li>Your mission point 2...</li>
+                                <!-- ... other mission points ... -->
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

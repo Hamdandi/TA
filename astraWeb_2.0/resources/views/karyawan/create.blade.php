@@ -7,7 +7,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form method="POST" action="{{ route('karyawan.store') }}">
+        <form method="POST" action="{{ route('karyawan.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <div class="form-group">
@@ -67,11 +67,9 @@
                     <label for="ttd">Tanda Tangan</label>
                     <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="ttd">
-                            <label class="custom-file-label" for="ttd">Upload file tanda-tangan karyawan</label>
-                        </div>
-                        <div class="input-group-append">
-                            <span class="input-group-text">Upload</span>
+                            <input type="file" class="custom-file-input" id="ttd" name="ttd">
+                            <label class="custom-file-label" for="ttd" id="ttdFileName">Upload file tanda-tangan
+                                karyawan</label>
                         </div>
                     </div>
                 </div>
@@ -79,11 +77,8 @@
                     <label for="photo">Photo</label>
                     <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="photo">
-                            <label class="custom-file-label" for="photo">Upload Photo Karyawan</label>
-                        </div>
-                        <div class="input-group-append">
-                            <span class="input-group-text">Upload</span>
+                            <input type="file" class="custom-file-input" id="photo" name="photo">
+                            <label class="custom-file-label" for="photo" id="photoFileName">Upload Photo Karyawan</label>
                         </div>
                     </div>
                 </div>
@@ -96,4 +91,17 @@
             </div>
         </form>
     </div>
+
+    <script>
+        document.getElementById('ttd').addEventListener('change', function(e) {
+            var fileName = e.target.files[0].name;
+            document.getElementById('ttdFileName').textContent = fileName;
+        });
+
+        document.getElementById('photo').addEventListener('change', function(e) {
+            var fileName = e.target.files[0].name;
+            document.getElementById('photoFileName').textContent = fileName;
+        });
+    </script>
+
 @endsection

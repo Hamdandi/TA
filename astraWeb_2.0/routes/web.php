@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CutiController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JenisCutiController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\LamaranController;
@@ -33,15 +34,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LowonganController::class, 'landing'])->name('lowongan.landing');
 Route::post('/lamaran', [LamaranController::class, 'store'])->name('lamaran.store');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
+    // Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::get('/profile/chance-password/{profile}', [ProfileController::class, 'chancepassword'])->name('profile.chancepassword');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile/change-password', [ProfileController::class, 'changePassword'])->name('profile.changePassword');
+    Route::get('/profile/profile/{profile}', [ProfileController::class, 'profile'])->name('profile.index');
+    Route::patch('/profile/{karyawan}', [KaryawanController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 
     // Lowongan
     Route::get('/lowongan', [LowonganController::class, 'index'])->name('lowongan.index');
@@ -60,6 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan.index');
     Route::get('/karyawan/create', [KaryawanController::class, 'create'])->name('karyawan.create');
     Route::post('/karyawan', [KaryawanController::class, 'store'])->name('karyawan.store');
+
 
     // Jenis Cuti
     Route::get('/jenis-cuti', [JenisCutiController::class, 'index'])->name('jenis-cuti.index');

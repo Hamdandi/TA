@@ -34,10 +34,7 @@
                             <td>{{ $item->alamat }}</td>
                             <td>{{ $item->jenis_kelamin }}</td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#karyawanModal-{{ $item->id }}">
-                                    Lihat Detail
-                                </button>
+                                <a href="profile/profile/{{ $item->id }}" class="btn btn-primary">Lihat Detail</a>
                             </td>
                         </tr>
                     @endforeach

@@ -44,6 +44,10 @@ class karyawan extends Model
         'tempat_lahir',
         'tanggal_lahir',
         'nip',
+        'ttd',
+        'photo',
     ];
     protected $dates = ['tanggal_lahir'];
+
+    protected $table = 'karyawans';
 }

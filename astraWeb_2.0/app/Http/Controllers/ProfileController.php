@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\cuti;
 use App\Models\jenis_cuti;
+use App\Models\karyawan;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,8 +28,21 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function profile($karyawanId): View
+    {
+        $karyawan = Karyawan::find($karyawanId);
 
-    public function chancepassword(Request $request): View
+        if (!$karyawan) {
+            abort(404, 'Employee not found');
+        }
+
+        return view('profile.index', [
+            'karyawan' => $karyawan,
+        ]);
+    }
+
+
+    public function changePassword(Request $request): View
     {
         return view('profile.password', [
             'user' => $request->user(),
