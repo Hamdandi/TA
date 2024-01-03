@@ -50,6 +50,9 @@ class RegisteredUserController extends Controller
             'role' => $request->role,
         ]);
 
+        // Flash a success message to the session
+        session()->flash('success', 'User has been successfully added.');
+
         return redirect('/register');
     }
 
@@ -69,6 +72,8 @@ class RegisteredUserController extends Controller
 
         User::where('id', $user->id)
             ->update($validatedData);
+
+        session()->flash('success', 'User has been successfully updated.');
 
         return redirect('/register');
     }
