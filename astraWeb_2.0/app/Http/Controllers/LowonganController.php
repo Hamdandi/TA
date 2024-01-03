@@ -53,7 +53,9 @@ class LowonganController extends Controller
 
         lowongan::create($validationData);
         // dd($request->all());
-        return redirect('/lowongan')->with('success', 'Lowongan berhasil ditambahkan');
+        session()->flash('success', 'Lowongan berhasil ditambahkan');
+
+        return redirect('/lowongan');
     }
 
     /**
@@ -93,7 +95,8 @@ class LowonganController extends Controller
         lowongan::where('id', $lowongan->id)
             ->update($validationData);
 
-        return redirect('/lowongan')->with('success', 'Lowongan berhasil diupdate');
+        session()->flash('success', 'Lowongan berhasil diupdate');
+        return redirect('/lowongan');
     }
 
     /**
