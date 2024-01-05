@@ -92,7 +92,10 @@
                             <h3 class="card-title">VISI</h3>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Your vision text here...</p>
+                            <p class="card-text">Menjadi salah satu distributor LCV dan dealer Isuzu dengan pengelolaan
+                                terbaik melalui penekanan pertumbuhan yang berkelanjutan, pengembangan sumber daya manusia,
+                                membangun operasional yang unggul serta memberikan layanan terbaik yang ramah lingkungan dan
+                                bertanggung jawab terhadap sosial.</p>
                         </div>
                     </div>
 
@@ -103,9 +106,10 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled">
-                                <li>Your mission point 1...</li>
-                                <li>Your mission point 2...</li>
-                                <!-- ... other mission points ... -->
+                                <li>1. Menjadi The Most Preferred Dealer kendaraan niaga Isuzu dan Reliable LCV Distributor
+                                </li>
+                                <li>2. Memberikan produk dan layanan terbaik bagi seluruh pelanggan
+                                </li>
                             </ul>
                         </div>
                     </div>
