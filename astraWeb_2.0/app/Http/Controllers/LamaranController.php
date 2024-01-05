@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
+use App\Models\Karyawan;
 use App\Models\lamaran;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class LamaranController extends Controller
@@ -49,13 +53,13 @@ class LamaranController extends Controller
             'status_pernikahan' => 'required',
             'akun_media' => 'required',
             'resume' => 'required|file|mimes:pdf|max:2048', // Adding file validation
-            'foto' => 'required|image|max:2048', // Adding image validation
+            'photo' => 'required|image|max:2048', // Adding image validation
         ]);
 
         // File Storage
         try {
             $validateData['resume'] = $request->file('resume')->store('resume-pdf');
-            $validateData['foto'] = $request->file('foto')->store('foto');
+            $validateData['photo'] = $request->file('photo')->store('photo');
         } catch (\Exception $e) {
             return back()->withErrors(['msg' => 'File upload failed']);
         }
@@ -78,6 +82,7 @@ class LamaranController extends Controller
         } catch (\Exception $e) {
             return back()->withErrors(['msg' => 'Failed to send email']);
         }
+
 
         // Redirect with Success Message
         return redirect('/')->with('success', 'Lamaran telah dikirim'); // Updated success message
@@ -116,7 +121,7 @@ class LamaranController extends Controller
         switch ($validateData['status']) {
             case 'diterima':
                 $subject = 'Konfirmasi Diterima';
-                $emailContent = 'Selamat, lamaran Anda telah diterima.';
+                $emailContent = 'Selamat, anda telah diterima sebagai karyawan kami. ';
                 break;
             case 'ditolak':
                 $subject = 'Maaf, Anda Tidak Diterima';
@@ -137,11 +142,51 @@ class LamaranController extends Controller
                 ->subject($subject);
         });
 
-
+        if ($validateData['status'] == 'diterima') {
+            $this->moveToKaryawan($lamaran);
+        }
 
         session()->flash('success', 'Status lamaran berhasil diubah.');
 
         return redirect('/lamaran');
+    }
+
+    private function moveToKaryawan(Lamaran $lamaran)
+    {
+        $existingUser = User::where('email', $lamaran->email)->first();
+        if (!$existingUser) {
+            // Membuat user baru
+            $user = new User();
+            $user->username = $lamaran->nama_lengkap; // Atau cara lain untuk menghasilkan username
+            $user->email = $lamaran->email;
+            $user->password = Hash::make('12345678');
+            $user->role = 'karyawan';
+            $user->save();
+
+            // Mengirim email konfirmasi ke user dengan detail login
+            Mail::send('emails.user-confirmation', ['user' => $user], function ($message) use ($user) {
+                $message->to($user->email)->subject('Akun User Anda Telah Dibuat');
+            });
+        }
+
+        $karyawan = new Karyawan();
+        $karyawan->nama_lengkap = $lamaran->nama_lengkap;
+        $karyawan->nomor_hp = $lamaran->nomor_hp;
+        $karyawan->alamat = $lamaran->alamat;
+        $karyawan->jenis_kelamin = $lamaran->jenis_kelamin;
+        $karyawan->tempat_lahir = $lamaran->tempat_lahir;
+        $karyawan->tanggal_lahir = $lamaran->tanggal_lahir;
+        $karyawan->photo = $lamaran->photo;
+        $karyawan->akun_media = $lamaran->akun_media;
+        $karyawan->nama_sekolah = $lamaran->nama_sekolah;
+        $karyawan->pendidikan = $lamaran->pendidikan;
+        $karyawan->jurusan = $lamaran->jurusan;
+        $karyawan->resume = $lamaran->resume;
+        $karyawan->posisi = $lamaran->posisi; // Pastikan kolom posisi ada di tabel lamaran
+        // Isi nilai-nilai lain yang diperlukan untuk karyawan
+        // ...
+        $karyawan->user_id = $existingUser ? $existingUser->id : $user->id;
+        $karyawan->save();
     }
 
 

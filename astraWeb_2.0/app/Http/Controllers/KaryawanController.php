@@ -45,13 +45,19 @@ class KaryawanController extends Controller
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
-            'nip' => 'required',
+            'npk' => 'required',
+            'akun_media' => 'required',
+            'nama_sekolah' => 'required',
+            'pendidikan' => 'required',
+            'jurusan' => 'required',
+            'resume' => 'required|image|max:2048',
             'ttd' => 'required|image|max:2048',
             'photo' => 'required|image|max:2048',
         ]);
 
         $validateData['ttd'] = $request->file('ttd')->store('ttd');
         $validateData['photo'] = $request->file('photo')->store('photo');
+        $validateData['resume'] = $request->file('resume')->store('resume');
 
 
         karyawan::create($validateData);
@@ -73,6 +79,10 @@ class KaryawanController extends Controller
     public function edit(karyawan $karyawan)
     {
         //
+        return view('karyawan.update', [
+            'karyawan' => $karyawan,
+            'users' => user::all()
+        ]);
     }
 
     /**
@@ -82,13 +92,20 @@ class KaryawanController extends Controller
     {
         // Validate the request data
         $validateData = $request->validate([
-            'nama' => 'required|string|max:255',
+            'user_id' => 'required',
+            'nama_lengkap' => 'required|string|max:255',
+            'npk' => 'required',
+            'posisi' => 'required|string|max:255',
             'nomor_hp' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
             'jenis_kelamin' => 'required|string|max:255',
             'tempat_lahir' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
-            // Make file upload fields optional
+            'akun_media' => 'required',
+            'nama_sekolah' => 'required',
+            'pendidikan' => 'required',
+            'jurusan' => 'required',
+            'resume' => 'sometimes|image|max:2048',
             'ttd' => 'sometimes|image|max:2048',
             'photo' => 'sometimes|image|max:2048',
         ]);
@@ -102,22 +119,25 @@ class KaryawanController extends Controller
             $validateData['ttd'] = $request->file('ttd')->store('ttd');
         }
 
-        // Handle the 'photo' file upload
-        if ($request->hasFile('photo')) {
+        if ($request->hasFile('resume')) {
             // Delete the old file if it exists
+            if ($karyawan->resume) {
+                Storage::delete($karyawan->resume);
+            }
+            $validateData['resume'] = $request->file('resume')->store('resume');
+        }
+
+        if ($request->hasFile('photo')) {
             if ($karyawan->photo) {
                 Storage::delete($karyawan->photo);
             }
             $validateData['photo'] = $request->file('photo')->store('photo');
         }
 
-        // Update the karyawan record
         $karyawan->update($validateData);
 
-        // Redirect to a specified route with a success message
-        // Redirect to a different route, for example, a dashboard
-        return redirect()->route('dashboard')
-            ->with('success', 'Karyawan updated successfully.');
+        session()->flash('success', "karyawan updated successfully");
+        return redirect()->route('karyawan.index');
     }
 
     /**

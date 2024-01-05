@@ -31,7 +31,7 @@
                         <th>STATUS PERNIKAHAN</th>
                         <th>AKUN MEDIA</th>
                         <th>RESUME</th>
-                        <th>FOTO</th>
+                        <th>PHOTO</th>
                         <th>STATUS</th>
                         <th>ACTION</th>
                     </tr>
@@ -54,7 +54,8 @@
                             <td>{{ $item->status_pernikahan }}</td>
                             <td>{{ $item->akun_media }}</td>
                             <td>{{ $item->resume }}</td>
-                            <td>{{ $item->foto }}</td>
+                            <td><img class="img-thumbnail img-fluid" width="100px" height="100px"
+                                    src="{{ asset('storage/' . $item->photo) }}" alt="User profile picture"></td>
                             <td>{{ $item->status }}</td>
                             <td>
                                 <button type="button" class="btn btn-success" data-toggle="modal"

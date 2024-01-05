@@ -19,6 +19,7 @@ return new class extends Migration
                 ->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade'); // foreign key
+            $table->date('tanggal_penerimaan')->nullable();
             $table->string('keterangan')->nullable();
             $table->timestamps();
         });

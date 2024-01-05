@@ -193,7 +193,7 @@
                             <div class="form-group">
                                 <div class="btn btn-default btn-file">
                                     <i class="fas fa-paperclip photoFileName"></i> Photo
-                                    <input type="file" id="photo" name="foto">
+                                    <input type="file" id="photo" name="photo">
                                 </div>
                                 <p id="photoFileName"></p> <!-- Label to display selected file name -->
                             </div>

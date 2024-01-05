@@ -10,9 +10,23 @@ class phk extends Model
     use HasFactory;
 
     protected $fillable = [
-        'karyawan_id',
+        'user_id',
+        'nama_lengkap',
+        'nomor_hp',
+        'alamat',
+        'jenis_kelamin',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'photo',
+        'akun_media',
+        'nama_sekolah',
+        'pendidikan',
+        'jurusan',
+        'resume',
+        'npk',
+        'ttd',
         'keterangan',
-        'file',
+        'file_phk',
     ];
     public function user()
     {

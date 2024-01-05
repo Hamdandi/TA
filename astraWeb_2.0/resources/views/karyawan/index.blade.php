@@ -8,33 +8,52 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>NO</th>
-                        <th>USERNAME</th>
+                        <th>NPK</th>
                         <th>NAME</th>
-                        <th>NIK</th>
                         <th>POSISI</th>
                         <th>NOMOR HP</th>
                         <th>ALAMAT</th>
                         <th>JENIS KELAMIN</th>
+                        <th>PHOTO</th>
+                        <th>TTD</th>
                         <th>AKSI</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($karyawans as $key => $item)
+                    @foreach ($karyawans as $item)
                         <tr>
-                            <td>{{ $key + 1 }}</td>
-                            <td>{{ $item->user->username }}</td>
-                            <td>{{ $item->nama }}</td>
-                            <td>{{ $item->nip }}</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->npk }}</td>
+                            <td>{{ $item->nama_lengkap }}</td>
                             <td>{{ $item->posisi }}</td>
                             <td>{{ $item->nomor_hp }}</td>
                             <td>{{ $item->alamat }}</td>
                             <td>{{ $item->jenis_kelamin }}</td>
                             <td>
-                                <a href="profile/profile/{{ $item->id }}" class="btn btn-primary">Lihat Detail</a>
+                                <img class="img-thumbnail img-fluid" width=75px" height=75px"
+                                    src="{{ asset('storage/' . $item->photo) }}" alt="User profile picture">
+                            </td>
+                            <td>
+                                <img class="img-thumbnail img-fluid" width="75px" height="75px"
+                                    src="{{ asset('storage/' . $item->ttd) }}" alt="User profile picture">
+                            </td>
+                            <td>
+                                <a href="karyawan/edit/{{ $item->id }}" class="btn btn-primary">Edit</a>
                             </td>
                         </tr>
                     @endforeach
@@ -44,5 +63,11 @@
         <!-- Modal for each karyawan -->
     </div>
 
-
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $(".alert-success").fadeOut('slow');
+            }, 3000); // Waktu dalam milidetik, 3000 milidetik = 3 detik
+        });
+    </script>
 @endsection

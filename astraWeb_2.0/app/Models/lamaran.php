@@ -24,12 +24,17 @@ class lamaran extends Model
         'status_pernikahan',
         'akun_media',
         'resume',
-        'foto',
+        'photo',
         'status',
     ];
 
     public function lowongan()
     {
         return $this->belongsTo(lowongan::class, 'lowongan_id');
+    }
+
+    public function karyawan()
+    {
+        return $this->hasOne(karyawan::class);
     }
 }

@@ -19,15 +19,20 @@ return new class extends Migration
                 ->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade'); // foreign key
-            $table->string('photo')->nullable();
-            $table->string('nama')->nullable();
-            $table->string('posisi')->nullable();
+            $table->string('nama_lengkap')->nullable();
             $table->string('nomor_hp')->nullable();
             $table->string('alamat')->nullable();
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan'])->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
-            $table->string('nip')->nullable();
+            $table->string('photo')->nullable();
+            $table->string('akun_media')->nullable();
+            $table->string('nama_sekolah')->nullable();
+            $table->string('pendidikan')->nullable();
+            $table->string('jurusan')->nullable();
+            $table->string('resume')->nullable();
+            $table->string('posisi')->nullable();
+            $table->string('npk')->nullable();
             $table->string('ttd')->nullable();
             $table->timestamps();
         });
