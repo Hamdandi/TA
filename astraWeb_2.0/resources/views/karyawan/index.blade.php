@@ -30,7 +30,7 @@
                         <th>ALAMAT</th>
                         <th>JENIS KELAMIN</th>
                         <th>PHOTO</th>
-                        <th>TTD</th>
+                        {{-- <th>TTD</th> --}}
                         <th>AKSI</th>
                     </tr>
                 </thead>
@@ -48,12 +48,13 @@
                                 <img class="img-thumbnail img-fluid" width=75px" height=75px"
                                     src="{{ asset('storage/' . $item->photo) }}" alt="User profile picture">
                             </td>
-                            <td>
+                            {{-- <td>
                                 <img class="img-thumbnail img-fluid" width="75px" height="75px"
                                     src="{{ asset('storage/' . $item->ttd) }}" alt="User profile picture">
-                            </td>
+                            </td> --}}
                             <td>
                                 <a href="karyawan/edit/{{ $item->id }}" class="btn btn-primary">Edit</a>
+                                <a href="karyawan/show/{{ $item->id }}" class="btn btn-secondary">Detail</a>
                             </td>
                         </tr>
                     @endforeach

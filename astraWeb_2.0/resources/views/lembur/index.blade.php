@@ -39,7 +39,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->tanggal }}</td>
-                            <td>{{ $item->karyawan->nama }}</td>
+                            <td>{{ $item->karyawan->nama_lengkap }}</td>
                             <td>{{ $item->mulai_lembur }}</td>
                             <td>{{ $item->selesai_lembur }}</td>
                             <td>{{ $item->jumlah_jam }}</td>

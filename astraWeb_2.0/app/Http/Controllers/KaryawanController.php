@@ -38,7 +38,7 @@ class KaryawanController extends Controller
         //
         $validateData = $request->validate([
             'user_id' => 'required',
-            'nama' => 'required',
+            'nama_lengkap' => 'required',
             'posisi' => 'required',
             'nomor_hp' => 'required',
             'alamat' => 'required',
@@ -71,6 +71,9 @@ class KaryawanController extends Controller
     public function show(karyawan $karyawan)
     {
         //
+        return view('karyawan.read', [
+            'karyawan' => $karyawan
+        ]);
     }
 
     /**

@@ -39,10 +39,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Profile
     Route::get('/profile/change-password', [ProfileController::class, 'changePassword'])->name('profile.changePassword');
     Route::get('/profile/profile/{profile}', [ProfileController::class, 'profile'])->name('profile.index');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/{profile}', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile/edit-karyawan', [ProfileController::class, 'editKaryawan'])->name('profile.edit-karyawan');
+    Route::patch('/profile/edit-karyawan/{karyawan}', [ProfileController::class, 'updateKaryawan'])->name('profile.update-karyawan');
+
 
 
     // Lowongan
@@ -64,6 +69,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/karyawan', [KaryawanController::class, 'store'])->name('karyawan.store');
     Route::get('/karyawan/edit/{karyawan}', [KaryawanController::class, 'edit'])->name('karyawan.edit');
     Route::patch('/karyawan/{karyawan}', [KaryawanController::class, 'update'])->name('karyawan.update');
+    Route::get('/karyawan/show/{karyawan}', [KaryawanController::class, 'show'])->name('karyawan.show');
 
 
     // Jenis Cuti
