@@ -40,13 +40,15 @@ Route::middleware('auth')->group(function () {
 
 
     // Profile
-    Route::get('/profile/change-password', [ProfileController::class, 'changePassword'])->name('profile.changePassword');
     Route::get('/profile/profile/{profile}', [ProfileController::class, 'profile'])->name('profile.index');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile/{profile}', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/edit-karyawan', [ProfileController::class, 'editKaryawan'])->name('profile.edit-karyawan');
     Route::patch('/profile/edit-karyawan/{karyawan}', [ProfileController::class, 'updateKaryawan'])->name('profile.update-karyawan');
+    Route::get('/profile/change-password', [ProfileController::class, 'changePasswordView'])->name('profile.change-password');
+    Route::post('/profile/change-password', [ProfileController::class, 'changePassword']);
+
 
 
 

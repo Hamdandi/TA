@@ -17,7 +17,11 @@
 
                         <p class="text-muted text-center">{{ $karyawan->posisi }}</p>
 
-                        <a href="#" class="btn btn-primary btn-block"><b>Chance Password</b></a>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <input type="submit" class="btn btn-danger btn-block" value="Logout"
+                                onclick="return confirm('Are you sure?')">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -26,11 +30,15 @@
                     <div class="card-header p-2">
                         <ul class="nav nav-pills">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#activity" data-toggle="tab">Profile</a>
+                                <a class="nav-link active" href="#activity">Profile</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('profile.edit-karyawan') }}">Edit
                                     Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('profile.change-password') }}">Change
+                                    Password</a>
                             </li>
                         </ul>
                     </div>

@@ -3,48 +3,30 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <!-- left column -->
             <div class="col-md-12">
-                <!-- jquery validation -->
-                <div class="card card-primary">
-                    <div class="card-header">
-                        <h3 class="card-title">Quick Example <small>jQuery Validation</small></h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <!-- form start -->
-                    <form id="quickForm">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Password Lama</label>
-                                <input type="password" name="password" class="form-control" id="exampleInputPassword1"
-                                    placeholder="masukkan password lama">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password Baru</label>
-                                <input type="password" name="password" class="form-control" id="exampleInputPassword1"
-                                    placeholder="masukkan password baru">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Konfirmasi Password Baru</label>
-                                <input type="password" name="password" class="form-control" id="exampleInputPassword1"
-                                    placeholder="konfirmasi password baru">
-                            </div>
+                <div class="tab-pane" id="changepassword">
+                    <form action="{{ route('profile.change-password') }}" method="POST">
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="current_password">Current Password</label>
+                            <input type="password" name="current_password" class="form-control" required>
                         </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+
+                        <div class="form-group">
+                            <label for="new_password">New Password</label>
+                            <input type="password" name="new_password" class="form-control" required>
                         </div>
+
+                        <div class="form-group">
+                            <label for="new_password_confirmation">Confirm New Password</label>
+                            <input type="password" name="new_password_confirmation" class="form-control" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Change Password</button>
                     </form>
                 </div>
-                <!-- /.card -->
             </div>
-            <!--/.col (left) -->
-            <!-- right column -->
-            <div class="col-md-6">
-
-            </div>
-            <!--/.col (right) -->
         </div>
-        <!-- /.row -->
-    </div><!-- /.container-fluid -->
+    </div>
 @endsection

@@ -75,13 +75,14 @@
                     <div class="info">
                         @if (Auth::user() && Auth::user()->karyawan)
                             <!-- Hyperlink ke halaman edit profil pengguna yang login -->
-                            <a href="{{ route('profile.index', ['profile' => Auth::user()->karyawan->id]) }}"
+                            <a href="{{ route('profile.index', ['profile' => Auth::user()->id]) }}"
                                 class="d-block">{{ Auth::user()->karyawan->nama_lengkap }}</a>
                         @else
                             <a href="#" class="d-block">Guest</a>
                         @endif
                     </div>
                 </div>
+
 
 
 

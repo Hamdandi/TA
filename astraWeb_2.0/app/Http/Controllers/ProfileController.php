@@ -8,12 +8,14 @@ use App\Models\karyawan;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
+
 class ProfileController extends Controller
 {
-
     /**
      * Display the user's profile form.
      */
@@ -21,33 +23,48 @@ class ProfileController extends Controller
     {
         $user = $request->user(); // atau Auth::user();
 
-        return view('profile.edit', [
+        return view('profile.index', [
             'user' => $user,
         ]);
     }
 
-
-
-    public function profile($karyawanId): View
+    public function profile()
     {
-        $karyawan = Karyawan::find($karyawanId);
+        $user = auth()->user();
+        $karyawan = $user->karyawan;
 
-        if (!$karyawan) {
-            abort(404, 'Employee not found');
-        }
-
-        return view('profile.index', [
-            'karyawan' => $karyawan,
-        ]);
+        return view('profile.index', compact('user', 'karyawan'));
     }
 
 
-    public function changePassword(Request $request): View
+
+    public function changePasswordView(): View
     {
-        return view('profile.password', [
-            'user' => $request->user(),
-        ]);
+        return view('profile.password');
     }
+
+    public function changePassword(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'current_password' => ['required', function ($attribute, $value, $fail) use ($request) {
+                if (!Hash::check($value, $request->user()->password)) {
+                    $fail('The current password is incorrect.');
+                }
+            }],
+            'new_password' => ['required', 'confirmed', 'min:8'],
+        ]);
+
+        $user = $request->user();
+        $user->password = Hash::make($request->input('new_password'));
+        $user->save();
+
+        // Assuming the user model has a karyawan_id attribute
+        $karyawanId = $user->id;
+
+        return redirect()->route('profile.index', ['profile' => $karyawanId])->with('status', 'Password changed successfully');
+    }
+
+
 
     public function editKaryawan(): View
     {
@@ -90,7 +107,7 @@ class ProfileController extends Controller
             if ($karyawan->ttd) {
                 Storage::delete($karyawan->ttd);
             }
-            $validateData['ttd'] = $request->file('ttd')->store('ttd');
+            $validatedData['ttd'] = $request->file('ttd')->store('ttd');
         }
 
         if ($request->hasFile('resume')) {
@@ -108,12 +125,12 @@ class ProfileController extends Controller
             $validateData['photo'] = $request->file('photo')->store('photo');
         }
 
-        // Mencari karyawan dan mengupdate data
+        // dd($validatedData);
         $karyawan->update($validatedData);
-        dd($validatedData);
-        karyawan::where('id', $$karyawan->id)->update($validatedData);
 
-        return redirect()->route('profile.edit-karyawan')->with('status', 'Data karyawan diperbarui');
+
+        $user = $request->user();
+        return redirect()->route('profile.index', ['profile' => $user->id])->with('status', 'Data karyawan diperbarui');
     }
 
 
