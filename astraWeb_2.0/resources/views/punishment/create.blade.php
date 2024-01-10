@@ -15,7 +15,7 @@
                     <select class="form-control select2" name="karyawan_id" style="width: 100%;">
                         <option value="" selected="selected">Pilih nama karyawan</option>
                         @foreach ($karyawans as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                            <option value="{{ $item->id }}">{{ $item->nama_lengkap }}</option>
                         @endforeach
                     </select>
                 </div>

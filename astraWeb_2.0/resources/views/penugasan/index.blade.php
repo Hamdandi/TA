@@ -37,7 +37,7 @@
                     @foreach ($penugasan as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->karyawan->nama }}</td>
+                            <td>{{ $item->karyawan->nama_lengkap }}</td>
                             <td>{{ $item->karyawan->posisi }}</td>
                             <td>{{ $item->nama_penugasan }}</td>
                             <td>{{ $item->tanggal_mulai }}</td>

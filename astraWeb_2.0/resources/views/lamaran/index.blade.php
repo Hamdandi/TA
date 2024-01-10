@@ -40,7 +40,7 @@
                     @foreach ($lamarans as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->lowongan->nama_lowongan }}</td>
+                            <td>{{ $item->lowongan_id }}</td>
                             <td>{{ $item->nama_lengkap }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->nomor_hp }}</td>

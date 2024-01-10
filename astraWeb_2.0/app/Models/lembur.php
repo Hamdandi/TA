@@ -18,4 +18,13 @@ class lembur extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected $fillable = [
+        'user_id',
+        'tanggal',
+        'keterangan',
+        'mulai_lembur',
+        'selesai_lembur',
+        'status',
+    ];
 }

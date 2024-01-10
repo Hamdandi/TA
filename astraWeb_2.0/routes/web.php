@@ -12,6 +12,7 @@ use App\Http\Controllers\PenugasanController;
 use App\Http\Controllers\PhkController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PunishmentController;
+use App\Http\Controllers\RekapPresensiController;
 use App\Http\Controllers\ReqController;
 use App\Http\Controllers\RewardController;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,9 @@ Route::post('/lamaran', [LamaranController::class, 'store'])->name('lamaran.stor
 Route::middleware('auth')->group(function () {
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // Presensi
+    Route::get('/presensi', [RekapPresensiController::class, 'index'])->name('presensi');
+    Route::post('/presensi/import', [RekapPresensiController::class, 'store'])->name('rekap-presensi.store');
 
 
     // Profile
@@ -48,9 +52,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile/edit-karyawan/{karyawan}', [ProfileController::class, 'updateKaryawan'])->name('profile.update-karyawan');
     Route::get('/profile/change-password', [ProfileController::class, 'changePasswordView'])->name('profile.change-password');
     Route::post('/profile/change-password', [ProfileController::class, 'changePassword']);
-
-
-
 
     // Lowongan
     Route::get('/lowongan', [LowonganController::class, 'index'])->name('lowongan.index');

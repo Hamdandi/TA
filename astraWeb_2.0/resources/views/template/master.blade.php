@@ -50,14 +50,16 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar
-                    sidebar-dark-primary elevation-4 bg-indigo">
+        <aside class="main-sidebar wider sidebar-dark-primary elevation-4 bg-indigo">
             <!-- Brand Logo -->
-            <a href="../../index3.html" class="brand-link">
-                <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-                    class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Astra Isuzu Palembang</span>
+            <a href="{{ route('dashboard') }}" class="brand-link d-flex flex-column align-items-center">
+                <div class="logo-wrapper">
+                    <img src="{{ asset('dist/img/R.png') }}" alt="AdminLTE Logo"
+                        class="brand-image img-circle elevation-3" style="background: white">
+                </div>
+                <span class="brand-text font-weight-light"><strong> Astra Isuzu Palembang</strong></span>
             </a>
+
 
             <!-- Sidebar -->
             <div class="sidebar">
@@ -177,7 +179,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ url('/rekap') }}" class="nav-link">
+                                    <a href="{{ url('/presensi') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Rekap Presensi</p>
                                     </a>
@@ -272,21 +274,6 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <input type="submit" class="btn btn-danger" value="Logout"
-                                    onclick="return confirm('Are you sure?')">
-                            </form>
-                        </div>
-                    </div>
-                </div><!-- /.container-fluid -->
-            </section>
-
-            <!-- Main content -->
             <section class="content">
                 @yield('content')
             </section>

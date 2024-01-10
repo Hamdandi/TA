@@ -65,7 +65,7 @@ class LemburController extends Controller
         $lembur->total_jam = $totalJam + $jumlahJam;
 
         $lembur->save();
-
+        // dd($lembur);
         return redirect()->route('lembur.index')->with('success', 'Data lembur berhasil ditambahkan.');
     }
 

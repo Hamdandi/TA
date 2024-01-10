@@ -33,7 +33,7 @@
                     @foreach ($punishments as $key => $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->karyawan->nama }}</td>
+                            <td>{{ $item->karyawan->nama_lengkap }}</td>
                             <td>{{ $item->karyawan->posisi }}</td>
                             <td>{{ $item->keterangan }}</td>
                             <td>
