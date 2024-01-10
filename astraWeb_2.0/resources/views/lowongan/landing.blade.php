@@ -7,52 +7,136 @@
     <title>Astra Isuzu Palembang</title>
     <!-- Bootstrap 5 CSS -->
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-    <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
         .navbar-custom {
-            background-color: #ffffff;
+            background-color: #333;
         }
 
         .navbar-custom .navbar-brand img {
-            height: 50px;
+            max-height: 60px;
         }
 
-        .hero-section {
-            position: relative;
-            background: url('path-to-your-hero-image.jpg') center center no-repeat;
-            background-size: cover;
-            height: 400px;
+        .navbar-toggler {
+            border: none;
         }
 
-        .hero-text-box {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
+        section {
+            padding: 40px 0;
         }
 
-        .product-section {
-            padding: 2rem 0;
+        .about-section .icon {
+            display: block;
+            margin: auto;
+            width: 80px;
+            height: 80px;
         }
 
-        .product-card img {
-            height: 150px;
-            /* Fixed height for consistency */
-            object-fit: contain;
-            /* To make sure the product images fit well */
+        .about-section h2,
+        .about-section h3,
+        .business-text h2 {
+            color: #d00000;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-section p,
+        .business-text p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .btn-danger {
+            background-color: #d00000;
+            border: none;
+        }
+
+        .btn-danger:hover {
+            background-color: #bb0000;
+        }
+
+        .modal-content {
+            border-radius: 0.5rem;
+        }
+
+        .business-section .business-text {
+            padding-left: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .business-section .business-text {
+                padding-left: 1rem;
+            }
+        }
+
+        .content h2 {
+            color: #d00000;
+            margin-bottom: 1rem;
+        }
+
+        .content .card {
+            border: 1px solid #ddd;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .content .card-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .content .card-title {
+            color: #333;
+            font-size: 1.25rem;
+        }
+
+        .content .card-body {
+            padding: 1rem;
+        }
+
+        .content .badge {
+            background-color: #ffc107;
+            color: #212529;
+            margin-bottom: 1rem;
+        }
+
+        .content .apply-button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin-top: 1rem;
+        }
+
+        .content .apply-button:hover {
+            background-color: #218838;
+        }
+
+        @media (max-width: 768px) {
+            .content .card {
+                border: none;
+                border-bottom: 1px solid #ddd;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-custom bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-custom bg-white shadow">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('dist/img/R.png') }}" alt="Logo" width="100px" height="100px">
@@ -70,100 +154,88 @@
             </div>
         </div>
     </nav>
-    <!-- Products Section -->
-    <section class="slide-section">
+    <section class="business-section">
         <div class="container">
-            <div class="card-body p-0">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="d-block w-100 rounded" src="{{ asset('dist/img/bener1.jpg') }}"
-                                alt="First slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100 rounded" src="{{ asset('dist/img/bener.jpg') }}"
-                                alt="Second
-                                slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100 rounded" src="{{ asset('dist/img/bener3.jpg') }}"
-                                alt="Third slide">
-                        </div>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="business-text">
+                        <h2>WHAT BUSINESS ARE WE IN</h2>
+                        <p>Dealer kendaraan CV dan distributor kendaraan LCV serta menyediakan produk dan layanan after
+                            sales isuzu</p>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-custom-icon" aria-hidden="true">
-                            <i class="fas fa-chevron-left"></i>
-                        </span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-custom-icon" aria-hidden="true">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
-                        <span class="sr-only">Next</span>
-                    </a>
                 </div>
-            </div>
-        </div>
-    </section>
-    <section class="product-section">
-        <div class="container text-center">
-            <strong>
-                <p class="t display-4">Our Product</p>
-            </strong>
-            <div class="card-body">
-                <div class="row row-cols-1 row-cols-md-2 g-4">
-                    <div class="col">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                    lead-in to additional content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-md-6">
+                    <img src="{{ asset('dist/img/mobil_1.jpg') }}" alt="Astra Isuzu Building" class="img-fluid rounded">
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="business-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img class="img-fluid rounded" src="{{ asset('dist/img/mobil_1.jpg') }}" alt="Building">
+                </div>
+                <div class="col-md-6">
+                    <div class="business-text">
+                        <h2>VISI</h2>
+                        <p>Menjadi salah satu distributor LCV dan dealer Isuzu dengan pengelolaan terbaik...</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="business-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="business-text">
+                        <h2>MISI</h2>
+                        <p>Menyediakan produk berkualitas tinggi yang memenuhi kebutuhan konsumen dan memastikan
+                            kepuasan pelanggan melalui layanan purna jual yang luar biasa...</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img class="img-fluid rounded" src="{{ asset('dist/img/mobil2.jpg') }}" alt="Mission Image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="about-section">
+        <div class="container">
+            <h2 class="text-center">Sekilas Astra Isuzu</h2>
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img src="{{ asset('dist/img/contract.svg') }}" alt="Berdiri Pada Tahun 1990" class="icon">
+                    <h3>Berdiri Pada Tahun 1990</h3>
+                    <p>PT. Astra International Tbk. - Isuzu Sales Operation atau biasa disebut Astra Isuzu merupakan
+                        jaringan jasa penjualan, perawatan, dan perbaikan serta penyediaan suku cadang produk Isuzu,
+                        yang berdiri pada tahun 1990.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <img src="{{ asset('dist/img/work.svg') }}" alt="Dealer Isuzu Terbesar" class="icon">
+                    <h3>Dealer Isuzu Terbesar</h3>
+                    <p>Saat ini Astra Isuzu merupakan dealer Isuzu terbesar di Indonesia yang menguasai sekitar 45% dari
+                        total penjualan Isuzu.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <img src="{{ asset('dist/img/agreement.svg') }}" alt="Kerjasama dengan 2.297 Partshop"
+                        class="icon">
+                    <h3>Kerjasama dengan 2.297 Partshop</h3>
+                    <p>Astra Isuzu saat ini memiliki 52 outlet yang tersebar di hampir seluruh Indonesia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <section class="content">
+        <h2 class="text-center">Sekilas Astra Isuzu</h2>
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
