@@ -139,7 +139,7 @@
     <nav class="navbar navbar-expand-lg navbar-custom bg-white shadow">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('dist/img/R.png') }}" alt="Logo" width="100px" height="100px">
+                <img src="{{ asset('dist/img/R.png') }}" alt="Logo" width="100px" height="35px">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -235,7 +235,7 @@
 
 
     <section class="content">
-        <h2 class="text-center">Sekilas Astra Isuzu</h2>
+        <h2 class="text-center">Lowongan yang tersedia</h2>
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}

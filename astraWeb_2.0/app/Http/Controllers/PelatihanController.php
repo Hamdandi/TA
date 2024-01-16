@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class PelatihanController extends Controller
 {
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = auth()->user();
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      */
@@ -25,6 +34,7 @@ class PelatihanController extends Controller
     public function create()
     {
         //
+        $this->authorize('HRD', $this->user);
         return view('pelatihan.create', [
             'karyawans' => karyawan::all(),
         ]);
@@ -60,6 +70,7 @@ class PelatihanController extends Controller
     public function edit(pelatihan $pelatihan)
     {
         //
+        $this->authorize('HRD', $this->user);
         return view('pelatihan.update', [
             'pelatihan' => $pelatihan,
             'karyawans' => karyawan::all(),

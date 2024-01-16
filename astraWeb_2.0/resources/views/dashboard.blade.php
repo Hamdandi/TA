@@ -10,7 +10,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">Lamaran masuk</span>
-                        <span class="info-box-number">41,410</span>
+                        <span class="info-box-number">0</span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -27,7 +27,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">Data Pengajuan Cuti</span>
-                        <span class="info-box-number">760</span>
+                        <span class="info-box-number">0</span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -40,7 +40,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">Jumlah Karyawn</span>
-                        <span class="info-box-number">2,000</span>
+                        <span class="info-box-number">75</span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>

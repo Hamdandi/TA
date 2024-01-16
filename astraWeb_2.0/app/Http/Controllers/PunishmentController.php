@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class PunishmentController extends Controller
 {
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = auth()->user();
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      */
@@ -25,6 +34,7 @@ class PunishmentController extends Controller
     public function create()
     {
         //
+        $this->authorize('HRD', $this->user);
         return view('punishment.create', [
             'karyawans' => karyawan::all(),
         ]);
@@ -60,6 +70,7 @@ class PunishmentController extends Controller
     public function edit(punishment $punishment)
     {
         //
+        $this->authorize('HRD', $this->user);
         return view('punishment.update', [
             'punishment' => $punishment,
             'karyawans' => karyawan::all(),

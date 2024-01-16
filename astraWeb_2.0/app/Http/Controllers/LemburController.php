@@ -9,6 +9,15 @@ use Illuminate\Http\Request;
 
 class LemburController extends Controller
 {
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = auth()->user();
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      */
@@ -26,6 +35,7 @@ class LemburController extends Controller
     public function create()
     {
         //
+        $this->authorize('HRD', $this->user);
         return view('lembur.create', [
             'karyawan' => karyawan::all(),
         ]);

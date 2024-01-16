@@ -9,11 +9,22 @@ use Illuminate\Http\Request;
 
 class KaryawanController extends Controller
 {
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = auth()->user();
+            return $next($request);
+        });
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $this->authorize('HRD', $this->user);
         $karyawans = Karyawan::all();
         return view('karyawan.index', compact('karyawans'));
     }
