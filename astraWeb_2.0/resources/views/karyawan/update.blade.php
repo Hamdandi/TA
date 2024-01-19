@@ -7,7 +7,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form method="POST"action="{{ route('karyawan.update', ['karyawan' => $karyawan->id]) }}"
+        <form method="POST" action="{{ route('karyawan.update', ['karyawan' => $karyawan->id]) }}"
             enctype="multipart/form-data">
             @csrf
             @method('PATCH')

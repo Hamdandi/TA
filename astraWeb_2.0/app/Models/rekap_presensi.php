@@ -9,10 +9,7 @@ class rekap_presensi extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['karyawan_id', 'status', 'tanggal'];
+    protected $table = 'rekap_presensis';
 
-    public function karyawan()
-    {
-        return $this->belongsTo(karyawan::class);
-    }
+    protected $fillable = ['name', 'date', 'status'];
 }

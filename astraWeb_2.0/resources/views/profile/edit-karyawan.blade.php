@@ -4,10 +4,10 @@
 @section('content')
     <div class="container">
         <h1>Edit Data Karyawan</h1>
-        <form action="{{ route('profile.update-karyawan', ['karyawan' => $karyawan->id]) }}" method="post"
+        <form action="{{ route('profile.update-karyawan', ['karyawan' => $karyawan->id]) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
-            @method('patch')
+            @method('PATCH')
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
                 <input type="text" class="form-control" id="nama" name="nama_lengkap"
@@ -93,4 +93,16 @@
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
+
+    <script>
+        document.getElementById('ttd').addEventListener('change', function(e) {
+            var fileName = e.target.files[0].name;
+            document.getElementById('ttdFileName').textContent = fileName;
+        });
+
+        document.getElementById('photo').addEventListener('change', function(e) {
+            var fileName = e.target.files[0].name;
+            document.getElementById('photoFileName').textContent = fileName;
+        });
+    </script>
 @endsection

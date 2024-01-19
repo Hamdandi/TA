@@ -108,31 +108,36 @@
                         data-accordion="false">
                         <!-- Dashboard -->
                         <li class="nav-item">
-                            <a href="{{ url('/dashboard') }}" class="nav-link">
+                            <a href="{{ url('/dashboard') }}"
+                                class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
 
                         <!-- Master Data Dropdown -->
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="collapse"
-                                data-bs-target="#masterDataDropdown" aria-expanded="false">
+                        <li
+                            class="nav-item {{ request()->is('register*') || request()->is('karyawan*') ? 'menu-open' : '' }}">
+                            <a href="#"
+                                class="nav-link {{ request()->is('register*') || request()->is('karyawan*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-database"></i>
                                 <p>
                                     Master Data
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview"
+                                style="{{ request()->is('register*') || request()->is('karyawan*') ? 'display: block;' : 'display: none;' }}">
                                 <li class="nav-item">
-                                    <a href="{{ url('/register') }}" class="nav-link">
+                                    <a href="{{ url('/register') }}"
+                                        class="nav-link {{ request()->is('register*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Users</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('/karyawan') }}" class="nav-link">
+                                    <a href="{{ url('/karyawan') }}"
+                                        class="nav-link {{ request()->is('karyawan*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Karyawan</p>
                                     </a>
@@ -140,52 +145,62 @@
                             </ul>
                         </li>
 
-                        <!-- Rekrutmen Dropdown -->
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="collapse"
-                                data-bs-target="#rekrutmenDropdown" aria-expanded="false">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    Rekrutmen
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ url('/lowongan') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Lowongan</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('/lamaran') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Lamaran</p>
-                                    </a>
-                                </li>
-                                <!-- More items... -->
-                            </ul>
-                        </li>
+                        @if (Auth::user()->role == 'hrd' || Auth::user()->role == 'kepala cabang')
+                            <!-- Rekrutmen Dropdown -->
+                            <li
+                                class="nav-item {{ request()->is('lowongan*') || request()->is('lamaran*') ? 'menu-open' : '' }}">
+                                <a href="#"
+                                    class="nav-link {{ request()->is('lowongan*') || request()->is('lamaran*') ? 'display:block;' : 'display:none;' }}">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>
+                                        Rekrutmen
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview"
+                                    style="{{ request()->is('lowongan*') || request()->is('lamaran*') ? 'display:block;' : 'display:none;' }}">
+                                    <li class="nav-item">
+                                        <a href="{{ url('/lowongan') }}"
+                                            class="nav-link {{ request()->is('lowongan*') ? 'active' : '' }}">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Lowongan</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/lamaran') }}"
+                                            class="nav-link {{ request()->is('lamaran*') ? 'active' : '' }}">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Lamaran</p>
+                                        </a>
+                                    </li>
+                                    <!-- More items... -->
+                                </ul>
+                            </li>
+                        @endif
 
                         <!-- Presensi Dropdown -->
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="collapse"
-                                data-bs-target="#presensiDropdown" aria-expanded="false">
+                        <li
+                            class="nav-item {{ request()->is('presensi*') || request()->is('jenis-cuti*') || request()->is('cuti*') || request()->is('lembur*') ? 'menu-open' : '' }}">
+                            <a href="#"
+                                class="nav-link {{ request()->is('presensi*') || request()->is('jenis-cuti*') || request()->is('cuti*') || request()->is('lembur*') ? 'display:block;' : 'display:none;' }}">
                                 <i class="nav-icon fas fa-calendar-alt"></i>
                                 <p>
                                     Presensi
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview"
+                                style="{{ request()->is('presensi*') || request()->is('jenis-cuti*') || request()->is('cuti*') || request()->is('lembur*') ? 'display:block;' : 'display:none;' }}">
                                 <li class="nav-item">
-                                    <a href="{{ url('/presensi') }}" class="nav-link">
+                                    <a href="{{ url('/presensi') }}"
+                                        class="nav-link {{ request()->is('presensi*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Rekap Presensi</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('/jenis-cuti') }}" class="nav-link">
+                                    <a href="{{ url('/jenis-cuti') }}"
+                                        class="nav-link {{ request()->is('jenis-cuti*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>
                                             Jenis Cuti
@@ -193,7 +208,8 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('/cuti') }}" class="nav-link">
+                                    <a href="{{ url('/cuti') }}"
+                                        class="nav-link {{ request()->is('cuti*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>
                                             Cuti
@@ -201,7 +217,8 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('/lembur') }}" class="nav-link">
+                                    <a href="{{ url('/lembur') }}"
+                                        class="nav-link {{ request()->is('lembur*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>
                                             Lembur
@@ -212,9 +229,11 @@
                         </li>
 
                         <!-- Lain - lain Dropdown -->
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="collapse"
-                                data-bs-target="#lainDropdown" aria-expanded="false">
+                        <li
+                            class="nav-item {{ request()->is('penugasan*') || request()->is('pelatihan*') || request()->is('reward*') || request()->is('punishment*') || request()->is('phk*') ? 'menu-open' : '' }}">
+                            <a href="#"
+                                class="nav-link {{ request()->is('penugasan*') || request()->is('pelatihan*') || request()->is('reward*') || request()->is('punishment*') || request()->is('phk*') ? 'display:block;' : 'display:none;' }}"
+                                data-bs-toggle="collapse" data-bs-target="#lainDropdown" aria-expanded="false">
                                 <i class="nav-icon fas fa-ellipsis-h"></i>
                                 <p>
                                     Lain - lain
@@ -223,7 +242,8 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ url('/penugasan') }}" class="nav-link">
+                                    <a href="{{ url('/penugasan') }}"
+                                        class="nav-link {{ request()->is('penugasan*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>
                                             Penugasan
@@ -231,7 +251,8 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('/pelatihan') }}" class="nav-link">
+                                    <a href="{{ url('/pelatihan') }}"
+                                        class="nav-link {{ request()->is('pelatihan*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>
                                             Pelatihan
@@ -239,13 +260,15 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('/reward') }}" class="nav-link">
+                                    <a href="{{ url('/reward') }}"
+                                        class="nav-link {{ request()->is('reward*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Reward</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('/punishment') }}" class="nav-link">
+                                    <a href="{{ url('/punishment') }}"
+                                        class="nav-link {{ request()->is('punishment*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>
                                             Punishment
@@ -253,7 +276,8 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ url('/phk') }}" class="nav-link">
+                                    <a href="{{ url('/phk') }}"
+                                        class="nav-link {{ request()->is('phk*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>
                                             PHK

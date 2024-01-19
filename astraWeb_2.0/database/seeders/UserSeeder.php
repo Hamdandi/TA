@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
                 'username' => 'dimas',
                 'email' => 'dimas@gmail.com',
                 'password' => Hash::make('dimas123'),
-                'role' => 'karyawan',
+                'role' => 'hrd',
                 'is_active' => 1,
             ],
             [

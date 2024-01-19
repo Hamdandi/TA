@@ -53,7 +53,8 @@
                             <td>{{ $item->tanggal_lahir }}</td>
                             <td>{{ $item->status_pernikahan }}</td>
                             <td>{{ $item->akun_media }}</td>
-                            <td><a href="{{ asset('storage/' . $item->resume) }}" target="_blank">Lihst</a></td>
+                            <td><a class="btn btn-sm btn-outline-info" href="{{ asset('storage/' . $item->resume) }}"
+                                    target="_blank">Lihat</a></td>
                             <td><img class="img-thumbnail img-fluid" width="100px" height="100px"
                                     src="{{ asset('storage/' . $item->photo) }}" alt="User profile picture"></td>
                             <td>{{ $item->status }}</td>

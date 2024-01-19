@@ -17,23 +17,17 @@
                     <tr>
                         <th>NO</th>
                         <th>NAMA KARYAWAN</th>
-                        <th>TANGGAL</th>
-                        <th>STATUS</th>
+                        <th>Tanggal</th>
+                        <th>JUMLAH KEHADIRAN</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($rekap_presensi as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->karyawan->nama_lengkap }}</td>
-                            <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
-                            <td>
-                                @if ($item->status == '1')
-                                    Hadir
-                                @else
-                                    Tidak Hadir
-                                @endif
-                            </td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->last_presence }}</td>
+                            <td>{{ $item->jumlah_kehadiran }}</td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -2,25 +2,29 @@
 
 namespace App\Imports;
 
+use App\Models\Presensi;
 use App\Models\rekap_presensi;
-use App\Models\RekapPresensi;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Illuminate\Support\Carbon;
 
 class RekapPresensiImport implements ToModel, WithHeadingRow
 {
     public function model(array $row)
     {
-        if (!isset($row['karyawan_id'])) {
-            // Anda bisa menangani baris tanpa karyawan_id sesuai kebutuhan
-            // Misalnya dengan melewatinya atau mencatat log kesalahan
-            return null;
+        $attendances = [];
+
+        for ($i = 1; $i <= 31; $i++) {
+            $date = Carbon::createFromDate(null, now()->month, $i); // assuming the current month
+            if (isset($row["day$i"])) {
+                $attendances[] = new rekap_presensi([
+                    'name' => $row['nama'],
+                    'date' => $date,
+                    'status' => $row["day$i"], // 1 or 0
+                ]);
+            }
         }
 
-        return new rekap_presensi([
-            'karyawan_id' => $row['karyawan_id'],
-            'status'      => $row['status'],
-            'tanggal'     => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tanggal']),
-        ]);
+        return $attendances;
     }
 }

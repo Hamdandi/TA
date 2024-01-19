@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportRekap;
+use App\Imports\Rekap;
 use App\Models\rekap_presensi;
 use Illuminate\Http\Request;
 use App\Imports\RekapPresensiImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Excel as ExcelExcel;
 
 class RekapPresensiController extends Controller
 {
@@ -23,10 +27,22 @@ class RekapPresensiController extends Controller
      */
     public function index()
     {
-        //
         $this->authorize('HRD', $this->user);
+
+        // Group by 'name' and count the 'status' where it equals 1 (present)
+        $rekapPresensiSummary = rekap_presensi::select(
+            'name',
+            DB::raw('MIN(date) as first_presence'),
+            DB::raw('MAX(date) as last_presence'),
+            DB::raw('COUNT(*) as jumlah_kehadiran')
+        )
+            ->where('status', 1)
+            ->groupBy('name')
+            ->paginate(10);
+
+
         return view('presensi.index', [
-            'rekap_presensi' => rekap_presensi::latest()->paginate(10)
+            'rekap_presensi' => $rekapPresensiSummary
         ]);
     }
 
@@ -43,13 +59,18 @@ class RekapPresensiController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // $file = $request->file('file');
-        Excel::import(new RekapPresensiImport, $request->file);
+        $request->validate([
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
 
-        return back()->with('success', 'Data presensi berhasil diimport!');
+        $nama_file = rand() . $request->file->getClientOriginalName();
+
+        $request->file->move('file_presensi', $nama_file);
+
+        Excel::import(new Rekap, public_path('/file_presensi/' . $nama_file));
+
+        return redirect()->route('presensi')->with('success', 'Data berhasil diimport');
     }
-
     /**
      * Display the specified resource.
      */

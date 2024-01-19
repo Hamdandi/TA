@@ -28,7 +28,9 @@
                         <th>ALASAN</th>
                         <th>STATUS</th>
                         <th>KETERANGAN</th>
-                        <th>Aksi</th> <!-- Kolom untuk tombol verifikasi -->
+                        @if (Auth::user()->role == 'hrd' || Auth::user()->role == 'kepala cabang')
+                            <th>Aksi</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -42,16 +44,29 @@
                             <td>{{ $item->jumlah_hari }}</td>
                             <td>{{ $item->sisa_cuti }}</td>
                             <td>{{ $item->alasan }}</td>
-                            <td>{{ $item->status }}</td>
+                            <td>
+                                @if ($item->status == 'menunggu')
+                                    <span class="badge badge-warning">{{ $item->status }}</span>
+                                @elseif ($item->status == 'diterima')
+                                    <span class="badge badge-success">{{ $item->status }}</span>
+                                @elseif ($item->status == 'ditolak')
+                                    <span class="badge badge-danger">{{ $item->status }}</span>
+                                @else
+                                    {{ $item->status }}
+                                @endif
+                            </td>
                             <td>{{ $item->keterangan }}</td>
                             <td class="row">
-                                <button class="btn btn-warning btn-edit" data-id="{{ $item->id }}">Edit</button>
-                                <form action="cuti/delete/{{ $item->id }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger delete-button" type="button" data-toggle="modal"
-                                        data-target="#confirmationModalCuti" data-id="{{ $item->id }}">Delete</button>
-                                </form>
+                                @if (Auth::user()->role == 'hrd' || Auth::user()->role == 'kepala cabang')
+                                    <button class="btn btn-warning btn-edit" data-id="{{ $item->id }}">Edit</button>
+                                    <form action="cuti/delete/{{ $item->id }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger delete-button" type="button" data-toggle="modal"
+                                            data-target="#confirmationModalCuti"
+                                            data-id="{{ $item->id }}">Delete</button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

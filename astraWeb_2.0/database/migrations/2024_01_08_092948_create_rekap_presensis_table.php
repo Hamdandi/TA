@@ -13,13 +13,9 @@ return new class extends Migration
     {
         Schema::create('rekap_presensis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('karyawan_id');
-            $table->foreign('karyawan_id')
-                ->references('id')
-                ->on('karyawans')
-                ->onDelete('cascade');
-            $table->enum('status', ['1', '0']);
-            $table->date('tanggal');
+            $table->string('name');
+            $table->date('date'); // Store the date of presence
+            $table->boolean('status')->default(0); // 0 = absent, 1 = present
             $table->timestamps();
         });
     }

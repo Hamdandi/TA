@@ -49,12 +49,8 @@
                         <input type="file" name="file" id="fileInput">
                         <input type="hidden" name="old_file" value="{{ $penugasan->file }}">
                     </div>
-                    <p class="help-block">Max. 32MB</p>
-                    <!-- Elemen untuk menampilkan nama file -->
                 </div>
             </div>
-            <!-- /.card-body -->
-
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>

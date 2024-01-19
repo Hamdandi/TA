@@ -80,7 +80,6 @@ class ProfileController extends Controller
     }
     public function updateKaryawan(Request $request, Karyawan $karyawan): RedirectResponse
     {
-        // Validasi request (sesuaikan aturan validasi sesuai kebutuhan Anda)
         $validatedData = $request->validate([
             'nama_lengkap' => 'required|string|max:255',
             'npk' => 'required',
@@ -97,13 +96,10 @@ class ProfileController extends Controller
             'resume' => 'sometimes|image|max:2048',
             'ttd' => 'sometimes|image|max:2048',
             'photo' => 'sometimes|image|max:2048',
-            // Tambahkan aturan validasi untuk field lainnya
         ]);
 
 
-        // Handle the 'ttd' file upload
         if ($request->hasFile('ttd')) {
-            // Delete the old file if it exists
             if ($karyawan->ttd) {
                 Storage::delete($karyawan->ttd);
             }
@@ -111,23 +107,21 @@ class ProfileController extends Controller
         }
 
         if ($request->hasFile('resume')) {
-            // Delete the old file if it exists
             if ($karyawan->resume) {
                 Storage::delete($karyawan->resume);
             }
-            $validateData['resume'] = $request->file('resume')->store('resume');
+            $validatedData['resume'] = $request->file('resume')->store('resume');
         }
 
         if ($request->hasFile('photo')) {
             if ($karyawan->photo) {
                 Storage::delete($karyawan->photo);
             }
-            $validateData['photo'] = $request->file('photo')->store('photo');
+            $validatedData['photo'] = $request->file('photo')->store('photo');
         }
 
         // dd($validatedData);
         $karyawan->update($validatedData);
-
 
         $user = $request->user();
         return redirect()->route('profile.index', ['profile' => $user->id])->with('status', 'Data karyawan diperbarui');
