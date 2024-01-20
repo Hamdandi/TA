@@ -90,6 +90,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/cuti/edit/{cuti}', [CutiController::class, 'edit'])->name('cuti.edit');
     Route::patch('/cuti/{cuti}', [CutiController::class, 'update'])->name('cuti.update');
     Route::delete('/cuti/delete/{cuti}', [CutiController::class, 'destroy'])->name('cuti.destroy');
+    Route::get('/cuti/karyawan', [CutiController::class, 'getDataByUser'])->name('cuti.karyawan');
 
     // verifiasi cuti
     Route::get('/cuti/verifikasi/{id}', [CutiController::class, 'verifikasiCuti'])->name('cuti.verifikasi');

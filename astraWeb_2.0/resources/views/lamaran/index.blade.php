@@ -8,8 +8,7 @@
     @endif
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h3 class="card-title">List Lamaran Pekekerja</h3>
-            <a href="{{ url('lamaran/create') }}" class="btn btn-primary">Add New</a>
+            <h3 class="card-title"><strong> Lamaran Pekekerja</strong></h3>
         </div>
         <!-- /.card-header -->
         <div class="card-body">

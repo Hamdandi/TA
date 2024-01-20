@@ -3,8 +3,8 @@
 @section('content')
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h3 class="card-title">Manajemen Penugasan</h3>
-            <a href="{{ url('penugasan/create') }}" class="btn btn-primary">Add New</a>
+            <h3 class="card-title"><strong>Manajemen Penugasan</strong></h3>
+            <a href="{{ url('penugasan/create') }}" class="btn btn-primary" style="margin-left: auto;">Add New</a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -42,7 +42,8 @@
                             <td>{{ $item->nama_penugasan }}</td>
                             <td>{{ $item->tanggal_mulai }}</td>
                             <td>{{ $item->tanggal_selesai }}</td>
-                            <td><a href="{{ asset('storage/' . $item->file) }}" target="_blank">Lihat</a></td>
+                            <td><a class="btn btn-outline-info btn-sm" href="{{ asset('storage/' . $item->file) }}"
+                                    target="_blank">Lihat</a></td>
                             <td>{{ $item->alasan }}</td>
                             <td>
                                 <a href="penugasan/edit/{{ $item->id }}" class="btn btn-primary">Edit</button>

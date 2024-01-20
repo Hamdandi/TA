@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\Auth;
 
 class CutiController extends Controller
 {
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = auth()->user();
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      */
@@ -18,6 +27,16 @@ class CutiController extends Controller
         //
         return view('cuti.index', [
             'cutis' => cuti::all(),
+            'karyawans' => karyawan::all(),
+            'jenis_cutis' => jenis_cuti::all(),
+        ]);
+    }
+
+    public function getDataByuser()
+    {
+        //
+        return view('cuti.karyawan', [
+            'cutis' => cuti::with('karyawan')->where('user_id', Auth::user()->id)->get(),
             'karyawans' => karyawan::all(),
             'jenis_cutis' => jenis_cuti::all(),
         ]);
@@ -103,6 +122,7 @@ class CutiController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('HRD', $this->user);
         $cuti = Cuti::findOrFail($id);
 
         // Validasi input

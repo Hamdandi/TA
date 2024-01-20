@@ -4,9 +4,9 @@
 @section('content')
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h3 class="card-title">Rekap Presensi</h3>
-            <!-- Trigger Modal untuk Import Presensi -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#importPresensiModal">
+            <h3 class="card-title"><strong>Rekap Presensi</strong></h3>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#importPresensiModal"
+                style="margin-left: auto;">
                 Import Presensi
             </button>
         </div>

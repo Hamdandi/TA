@@ -1,13 +1,14 @@
 @extends('template.master')
 @section('title', 'Register')
 @section('content')
-    <div class="card">
+    <div class="card p-3">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h3 class="card-title">DataTable with default features</h3>
-            <a href="{{ url('register/create') }}" class="btn btn-primary">Add New</a>
+            <h2 class="card-title"><strong>Manajemen Users</strong></h2>
+            <a href="{{ url('register/create') }}" class="btn btn-primary" style="margin-left: auto;">Add New</a>
         </div>
+
         <!-- /.card-header -->
-        <div class="card-body">
+        <div class="card-body p-3">
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -19,7 +20,7 @@
                     {{ session('error') }}
                 </div>
             @endif
-            <table id="example1" class="table table-bordered table-striped">
+            <table id="example1" class="table table-bordered table-striped p-3">
                 <thead>
                     <tr>
                         <th>NO</th>

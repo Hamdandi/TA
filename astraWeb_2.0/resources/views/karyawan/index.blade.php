@@ -1,10 +1,10 @@
 @extends('template.master')
 @section('title', 'Keryawan')
 @section('content')
-    <div class="card">
+    <div class="card p-3">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h3 class="card-title">Manajemen Karyawan</h3>
-            <a href="{{ url('karyawan/create') }}" class="btn btn-primary">Add New</a>
+            <h3 class="card-title"><strong>Manajemen Karyawan</strong></h3>
+            <a href="{{ url('karyawan/create') }}" class="btn btn-primary" style="margin-left: auto;">Add New</a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">

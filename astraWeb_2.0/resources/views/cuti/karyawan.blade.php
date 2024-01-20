@@ -27,9 +27,9 @@
                         <th>ALASAN</th>
                         <th>STATUS</th>
                         <th>KETERANGAN</th>
-                        @if (Auth::user()->role == 'hrd' || Auth::user()->role == 'kepala cabang')
+                        {{-- @if (Auth::user()->role == 'hrd' || Auth::user()->role == 'kepala cabang')
                             <th>Aksi</th>
-                        @endif
+                        @endif --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -55,7 +55,7 @@
                                 @endif
                             </td>
                             <td>{{ $item->keterangan }}</td>
-                            <td class="row">
+                            {{-- <td class="row">
                                 @if (Auth::user()->role == 'hrd' || Auth::user()->role == 'kepala cabang')
                                     <button class="btn btn-warning btn-edit" data-id="{{ $item->id }}">Edit</button>
                                     <form action="cuti/delete/{{ $item->id }}" method="POST">
@@ -66,7 +66,7 @@
                                             data-id="{{ $item->id }}">Delete</button>
                                     </form>
                                 @endif
-                            </td>
+                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>
@@ -75,7 +75,7 @@
 
 
         {{-- Modal Edit Status Cuti --}}
-        <div class="modal fade" id="edit-cuti-modal">
+        {{-- <div class="modal fade" id="edit-cuti-modal">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form method="POST" action="">
@@ -90,7 +90,6 @@
                         </div>
 
                         <div class="modal-body">
-                            {{-- Dropdown untuk status --}}
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select class="form-control" id="status" name="status">
@@ -100,7 +99,6 @@
                                 </select>
                             </div>
 
-                            {{-- Field untuk keterangan --}}
                             <div class="form-group">
                                 <label for="keterangan">Keterangan</label>
                                 <textarea class="form-control" id="keterangan" name="keterangan" rows="3"></textarea>
@@ -137,51 +135,51 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
-    <script>
-        $(document).on('click', '.btn-edit', function() {
-            var cutiId = $(this).data('id');
+        <script>
+            $(document).on('click', '.btn-edit', function() {
+                var cutiId = $(this).data('id');
 
 
-            // Buat AJAX request untuk mendapatkan data cuti berdasarkan cutiId
-            $.get('{{ route('cuti.edit', '') }}/' + cutiId, function(data) {
-                // Isi modal dengan data yang diterima
-                $('#edit-cuti-modal #status').val(data.status);
-                $('#edit-cuti-modal #keterangan').val(data.keterangan);
+                // Buat AJAX request untuk mendapatkan data cuti berdasarkan cutiId
+                $.get('{{ route('cuti.edit', '') }}/' + cutiId, function(data) {
+                    // Isi modal dengan data yang diterima
+                    $('#edit-cuti-modal #status').val(data.status);
+                    $('#edit-cuti-modal #keterangan').val(data.keterangan);
 
-                // Update action form modal
-                $('#edit-cuti-modal form').attr('action', '{{ route('cuti.update', '') }}/' + cutiId);
+                    // Update action form modal
+                    $('#edit-cuti-modal form').attr('action', '{{ route('cuti.update', '') }}/' + cutiId);
 
-                // Tampilkan modal
-                $('#edit-cuti-modal').modal('show');
-            });
-
-
-        });
-
-        $(document).ready(function() {
-            var deleteFormCuti;
-
-            $('.delete-button').on('click', function() {
-                deleteFormCuti = $(this).closest('form');
-            });
-
-            $('#confirmationModalCuti #confirmDelete').on('click', function() {
-                deleteFormCuti.submit();
-
-                // Menampilkan notifikasi SweetAlert
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Lowongan berhasil dihapus.',
-                    showConfirmButton: false,
-                    timer: 1500 // Durasi tampilan notifikasi, contoh 1.5 detik
+                    // Tampilkan modal
+                    $('#edit-cuti-modal').modal('show');
                 });
+
+
             });
 
-            // ... kode JavaScript untuk fitur lain ...
-        });
-    </script>
+            $(document).ready(function() {
+                var deleteFormCuti;
 
-@endsection
+                $('.delete-button').on('click', function() {
+                    deleteFormCuti = $(this).closest('form');
+                });
+
+                $('#confirmationModalCuti #confirmDelete').on('click', function() {
+                    deleteFormCuti.submit();
+
+                    // Menampilkan notifikasi SweetAlert
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Lowongan berhasil dihapus.',
+                        showConfirmButton: false,
+                        timer: 1500 // Durasi tampilan notifikasi, contoh 1.5 detik
+                    });
+                });
+
+                // ... kode JavaScript untuk fitur lain ...
+            });
+        </script>
+
+    @endsection

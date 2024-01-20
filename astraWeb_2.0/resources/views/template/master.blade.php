@@ -85,11 +85,6 @@
                     </div>
                 </div>
 
-
-
-
-
-
                 <!-- SidebarSearch Form -->
                 <div class="form-inline">
                     <div class="input-group" data-widget="sidebar-search">
@@ -115,38 +110,38 @@
                             </a>
                         </li>
 
-                        <!-- Master Data Dropdown -->
-                        <li
-                            class="nav-item {{ request()->is('register*') || request()->is('karyawan*') ? 'menu-open' : '' }}">
-                            <a href="#"
-                                class="nav-link {{ request()->is('register*') || request()->is('karyawan*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-database"></i>
-                                <p>
-                                    Master Data
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview"
-                                style="{{ request()->is('register*') || request()->is('karyawan*') ? 'display: block;' : 'display: none;' }}">
-                                <li class="nav-item">
-                                    <a href="{{ url('/register') }}"
-                                        class="nav-link {{ request()->is('register*') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Users</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('/karyawan') }}"
-                                        class="nav-link {{ request()->is('karyawan*') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Karyawan</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        @if (Auth::user()->role == 'hrd' || Auth::user()->role == 'kepala cabang')
+                            <li
+                                class="nav-item {{ request()->is('register*') || request()->is('karyawan*') ? 'menu-open' : '' }}">
+                                <a href="#"
+                                    class="nav-link {{ request()->is('register*') || request()->is('karyawan*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-database"></i>
+                                    <p>
+                                        Master Data
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview"
+                                    style="{{ request()->is('register*') || request()->is('karyawan*') ? 'display: block;' : 'display: none;' }}">
+                                    <li class="nav-item">
+                                        <a href="{{ url('/register') }}"
+                                            class="nav-link {{ request()->is('register*') ? 'active' : '' }}">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Users</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/karyawan') }}"
+                                            class="nav-link {{ request()->is('karyawan*') ? 'active' : '' }}">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Karyawan</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
 
                         @if (Auth::user()->role == 'hrd' || Auth::user()->role == 'kepala cabang')
-                            <!-- Rekrutmen Dropdown -->
                             <li
                                 class="nav-item {{ request()->is('lowongan*') || request()->is('lamaran*') ? 'menu-open' : '' }}">
                                 <a href="#"
@@ -191,28 +186,39 @@
                             </a>
                             <ul class="nav nav-treeview"
                                 style="{{ request()->is('presensi*') || request()->is('jenis-cuti*') || request()->is('cuti*') || request()->is('lembur*') ? 'display:block;' : 'display:none;' }}">
+                                @if (Auth::user()->role == 'hrd' || Auth::user()->role == 'kepala cabang')
+                                    <li class="nav-item">
+                                        <a href="{{ url('/presensi') }}"
+                                            class="nav-link {{ request()->is('presensi*') ? 'active' : '' }}">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Rekap Presensi</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/jenis-cuti') }}"
+                                            class="nav-link {{ request()->is('jenis-cuti*') ? 'active' : '' }}">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>
+                                                Jenis Cuti
+                                            </p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('/cuti') }}"
+                                            class="nav-link {{ request()->is('cuti*') ? 'active' : '' }}">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>
+                                                Cuti
+                                            </p>
+                                        </a>
+                                    </li>
+                                @endif
                                 <li class="nav-item">
-                                    <a href="{{ url('/presensi') }}"
-                                        class="nav-link {{ request()->is('presensi*') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Rekap Presensi</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('/jenis-cuti') }}"
-                                        class="nav-link {{ request()->is('jenis-cuti*') ? 'active' : '' }}">
+                                    <a href="{{ url('/cuti/karyawan') }}"
+                                        class="nav-link {{ request()->is('cuti/karyawan*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>
-                                            Jenis Cuti
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('/cuti') }}"
-                                        class="nav-link {{ request()->is('cuti*') ? 'active' : '' }}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            Cuti
+                                            Cuti karaywan
                                         </p>
                                     </a>
                                 </li>
@@ -298,7 +304,7 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content">
+            <section class="content p-2">
                 @yield('content')
             </section>
             <!-- /.content -->

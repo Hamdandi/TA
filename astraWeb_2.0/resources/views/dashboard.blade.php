@@ -3,50 +3,51 @@
 @section('content')
     <div class="container-fluid p-3">
         <div class="d-flex justify-content-center">
-            <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-envelope"></i></span>
+            @if (Auth::user()->role == 'hrd' || Auth::user()->role == 'kepala cabang')
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-envelope"></i></span>
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">Lamaran masuk</span>
-                        <span class="info-box-number">{{ $lamaran }}</span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Lamaran masuk</span>
+                            <span class="info-box-number">{{ $lamaran }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
+                    <!-- /.info-box -->
                 </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
+                <!-- /.col -->
 
-            <!-- fix for small devices only -->
-            <div class="clearfix hidden-md-up"></div>
+                <!-- fix for small devices only -->
+                <div class="clearfix hidden-md-up"></div>
 
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-calendar-alt"></i></span>
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-calendar-alt"></i></span>
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">Data Pengajuan Cuti</span>
-                        <span class="info-box-number">{{ $jumlahCuti }}</span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Data Pengajuan Cuti</span>
+                            <span class="info-box-number">{{ $jumlahCuti }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
+                    <!-- /.info-box -->
                 </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-friends"></i></span>
+                <!-- /.col -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-user-friends"></i></span>
 
-                    <div class="info-box-content">
-                        <span class="info-box-text">Jumlah Karyawn</span>
-                        <span class="info-box-number">{{ $karyawan }}</span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Jumlah Karyawn</span>
+                            <span class="info-box-number">{{ $karyawan }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box-content -->
+                    <!-- /.info-box -->
                 </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
+                <!-- /.col -->
+            @endif
         </div>
 
         <div class="row">

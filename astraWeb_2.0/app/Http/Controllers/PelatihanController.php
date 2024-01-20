@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\karyawan;
 use App\Models\pelatihan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PelatihanController extends Controller
 {
@@ -25,6 +26,14 @@ class PelatihanController extends Controller
         //
         return view('pelatihan.index', [
             'pelatihan' => pelatihan::with('karyawan')->get(),
+        ]);
+    }
+
+    public function getDataByUser()
+    {
+        return view('pelatihan.karyawan', [
+            'pelatihan' => pelatihan::with('karyawan')->where('user_id', Auth::user()->id)->get(),
+            'karyawans' => karyawan::all(),
         ]);
     }
 

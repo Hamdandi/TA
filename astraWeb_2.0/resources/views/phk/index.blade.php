@@ -3,8 +3,8 @@
 @section('content')
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h3 class="card-title">Manajemen PHK</h3>
-            <a href="{{ url('phk/create') }}" class="btn btn-primary">Add New</a>
+            <h3 class="card-title"><strong>Manajemen PHK</strong></h3>
+            <a href="{{ url('phk/create') }}" class="btn btn-primary" style="margin-left: auto;">Add New</a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">

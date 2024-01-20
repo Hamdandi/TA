@@ -1,7 +1,7 @@
 @extends('template.master')
 @section('title', 'Profile')
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid p-3">
         <div class="row">
             <div class="col-md-3">
 

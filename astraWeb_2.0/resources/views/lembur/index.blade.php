@@ -3,8 +3,8 @@
 @section('content')
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h3 class="card-title">Manajemen Lembur</h3>
-            <a href="{{ url('lembur/create') }}" class="btn btn-primary">Add New</a>
+            <h3 class="card-title"><strong> Lembur</strong></h3>
+            <a href="{{ url('lembur/create') }}" class="btn btn-primary" style="margin-left: auto;">Add New</a>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -48,40 +48,12 @@
                             <td>{{ $item->keterangan }}</td>
                             <td>
                                 <a href="lembur/edit/{{ $item->id }}" class="btn btn-primary">Edit</a>
-                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                    data-target="#read-karyawan-modal">
-                                    Lihat
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-
-
-
-        <div class="modal fade" id="read-karyawan-modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Default Modal</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>One fine body&hellip;</p>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- /.card-body -->
     </div>
 
     <script>
