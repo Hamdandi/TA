@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\karyawan;
 use App\Models\lembur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LemburController extends Controller
 {
@@ -26,6 +27,14 @@ class LemburController extends Controller
         //
         return view('lembur.index', [
             'lembur' => lembur::with('karyawan')->get(),
+        ]);
+    }
+
+    public function getDataByUser()
+    {
+        return view('lembur.karyawan', [
+            'lembur' => lembur::with('karyawan')->where('user_id', Auth::user()->id)->get(),
+            'karyawans' => karyawan::all(),
         ]);
     }
 
