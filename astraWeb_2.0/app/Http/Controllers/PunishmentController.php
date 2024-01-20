@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\karyawan;
 use App\Models\punishment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PunishmentController extends Controller
 {
@@ -25,6 +26,15 @@ class PunishmentController extends Controller
         //
         return view('punishment.index', [
             'punishments' => punishment::with('karyawan')->get()
+        ]);
+    }
+
+    public function getDataByUser()
+    {
+        //
+        return view('punishment.karyawan', [
+            'punishments' => punishment::with('karyawan')->where('karyawan_id', Auth::user()->id)->get(),
+            'karyawans' => karyawan::all(),
         ]);
     }
 

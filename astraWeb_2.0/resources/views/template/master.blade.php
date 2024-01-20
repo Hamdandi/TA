@@ -257,11 +257,29 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ url('/penugasan/karyawan') }}"
+                                        class="nav-link {{ request()->is('penugasan/karyawan*') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            Penugasan Karyawan
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ url('/pelatihan') }}"
                                         class="nav-link {{ request()->is('pelatihan*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>
                                             Pelatihan
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ url('/pelatihan/karyawan') }}"
+                                        class="nav-link {{ request()->is('pelatihan/karyawan*') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            Pelatihan karyawan
                                         </p>
                                     </a>
                                 </li>
@@ -273,11 +291,27 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ url('/reward/karyawan') }}"
+                                        class="nav-link {{ request()->is('reward/karyawan*') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Reward Karyawan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ url('/punishment') }}"
                                         class="nav-link {{ request()->is('punishment*') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>
                                             Punishment
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ url('/punishment/karyawan') }}"
+                                        class="nav-link {{ request()->is('punishment/karyawan*') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            Punishment Karyawan
                                         </p>
                                     </a>
                                 </li>

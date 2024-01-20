@@ -101,6 +101,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/penugasan', [PenugasanController::class, 'store'])->name('penugasan.store');
     Route::get('/penugasan/edit/{penugasan}', [PenugasanController::class, 'edit'])->name('penugasan.edit');
     Route::patch('/penugasan/{penugasan}', [PenugasanController::class, 'update'])->name('penugasan.update');
+    Route::get('/penugasan/karyawan', [PenugasanController::class, 'getDataByUser'])->name('penugasan.karyawan');
 
     // Pelatihan
     Route::get('/pelatihan', [PelatihanController::class, 'index'])->name('pelatihan.index');
@@ -108,6 +109,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/pelatihan', [PelatihanController::class, 'store'])->name('pelatihan.store');
     Route::get('/pelatihan/edit/{pelatihan}', [PelatihanController::class, 'edit'])->name('pelatihan.edit');
     Route::patch('/pelatihan/{pelatihan}', [PelatihanController::class, 'update'])->name('pelatihan.update');
+    Route::get('/pelatihan/karyawan', [PelatihanController::class, 'getDataByUser'])->name('pelatihan.karyawan');
 
     // Lembur
     Route::get('/lembur', [LemburController::class, 'index'])->name('lembur.index');
@@ -122,6 +124,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/reward', [RewardController::class, 'store'])->name('reward.store');
     Route::get('/reward/edit/{reward}', [RewardController::class, 'edit'])->name('reward.edit');
     Route::patch('/reward/{reward}', [RewardController::class, 'update'])->name('reward.update');
+    Route::get('/reward/karyawan', [RewardController::class, 'getDataByUser'])->name('reward.karyawan');
 
     // Punishment
     Route::get('/punishment', [PunishmentController::class, 'index'])->name('punishment.index');
@@ -129,6 +132,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/punishment', [PunishmentController::class, 'store'])->name('punishment.store');
     Route::get('/punishment/edit/{punishment}', [PunishmentController::class, 'edit'])->name('punishment.edit');
     Route::patch('/punishment/{punishment}', [PunishmentController::class, 'update'])->name('punishment.update');
+    Route::get('/punishment/karyawan', [PunishmentController::class, 'getDataByUser'])->name('punishment.karyawan');
 
     // PHK
     Route::get('/phk', [PhkController::class, 'index'])->name('phk.index');

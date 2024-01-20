@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\karyawan;
 use App\Models\penugasan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PenugasanController extends Controller
 {
@@ -26,6 +27,14 @@ class PenugasanController extends Controller
         //
         return view('penugasan.index', [
             'penugasan' => penugasan::with('karyawan')->get(),
+        ]);
+    }
+
+    public function getDataByUser()
+    {
+        return view('penugasan.karyawan', [
+            'penugasan' => penugasan::with('karyawan')->where('karyawan_id', Auth::user()->id)->get(),
+            'karyawans' => karyawan::all(),
         ]);
     }
 

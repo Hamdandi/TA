@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\karyawan;
 use App\Models\reward;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RewardController extends Controller
 {
@@ -25,6 +26,14 @@ class RewardController extends Controller
         //
         return view('reward.index', [
             'rewards' => reward::with('karyawan')->get()
+        ]);
+    }
+
+    public function getDataByUser()
+    {
+        return view('reward.karyawan', [
+            'rewards' => reward::with('karyawan')->where('karyawan_id', Auth::user()->id)->get(),
+            'karyawans' => karyawan::all(),
         ]);
     }
 

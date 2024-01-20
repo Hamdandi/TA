@@ -32,7 +32,7 @@ class PelatihanController extends Controller
     public function getDataByUser()
     {
         return view('pelatihan.karyawan', [
-            'pelatihan' => pelatihan::with('karyawan')->where('user_id', Auth::user()->id)->get(),
+            'pelatihan' => pelatihan::with('karyawan')->where('karyawan_id', Auth::user()->id)->get(),
             'karyawans' => karyawan::all(),
         ]);
     }
