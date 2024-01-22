@@ -12,7 +12,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label>Nama Karyawan</label>
-                    <select class="form-control select2" name="user_id" style="width: 100%;">
+                    <select class="form-control " name="user_id" style="width: 100%;">
                         <option selected="selected">Pilih nama karyawan</option>
                         @foreach ($karyawan as $item)
                             <option value="{{ $item->id }}">{{ $item->nama_lengkap }}</option>

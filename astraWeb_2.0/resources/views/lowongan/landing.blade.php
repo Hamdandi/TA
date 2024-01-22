@@ -155,6 +155,11 @@
         </div>
     </nav>
     <section class="business-section">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
@@ -236,11 +241,6 @@
 
     <section class="content">
         <h2 class="text-center">Lowongan yang tersedia</h2>
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
         <div class="container">
             <div class="col-12 position-relative" id="accordion">
                 @foreach ($lowongans as $index => $item)

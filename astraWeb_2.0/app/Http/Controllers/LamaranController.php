@@ -84,10 +84,10 @@ class LamaranController extends Controller
         // Email Sending
         try {
             Mail::send('emails.lamaran-confirmation', [
-                'subject' => 'Konfirmasi Lamaran Diterima',
-                'content' => 'Terima kasih telah melamar. Lamaran Anda sedang diproses.'
+                'subject' => 'Lamaran anda sedang diproses',
+                'content' => 'Terima kasih telah melamar. Lamaran Anda sedang diproses. Kami akan menghubungi Anda kembali jika Anda lolos ke tahap selanjutnya.'
             ], function ($message) use ($request) {
-                $message->to($request->email)->subject('Konfirmasi Lamaran Diterima');
+                $message->to($request->email)->subject('Lamaran Anda Sedang Diproses');
             });
         } catch (\Exception $e) {
             return back()->withErrors(['msg' => 'Failed to send email']);
@@ -130,8 +130,8 @@ class LamaranController extends Controller
 
         switch ($validateData['status']) {
             case 'diterima':
-                $subject = 'Konfirmasi Diterima';
-                $emailContent = 'Selamat, anda telah diterima sebagai karyawan kami. ';
+                $subject = 'Selamat, Anda diterima Sebagai Karyawan';
+                $emailContent = 'Selamat, anda telah melengkapi semua tahapan dan diterima sebagai karyawan.';
                 break;
             case 'ditolak':
                 $subject = 'Maaf, Anda Tidak Diterima';

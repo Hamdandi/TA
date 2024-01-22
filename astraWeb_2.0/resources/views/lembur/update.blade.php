@@ -13,7 +13,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label>Nama Karyawan</label>
-                    <select class="form-control select2" name="user_id" style="width: 100%;">
+                    <select class="form-control " name="user_id" style="width: 100%;">
                         @foreach ($karyawan as $item)
                             <option value="{{ $item->id }}" {{ $lembur->user_id == $item->id ? 'selected' : '' }}>
                                 {{ $item->nama_lengkap }}

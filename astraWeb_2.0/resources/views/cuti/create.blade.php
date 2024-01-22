@@ -12,7 +12,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label>Jenis Cuti</label>
-                    <select class="form-control select2" name="jenis_cuti_id" style="width: 100%;">
+                    <select class="form-control" name="jenis_cuti_id" style="width: 100%;">
                         <option selected="selected">Pilih cuti yang ingin di ambil</option>
                         @foreach ($jenis_cutis as $item)
                             <option value="{{ $item->id }}">{{ $item->jenis_cuti }}</option>
